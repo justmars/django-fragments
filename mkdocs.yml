@@ -1,0 +1,80 @@
+site_name: django-fragments Docs
+site_description: Custom template tags for common html idioms in Django, e.g. button, svg, etc.
+site_url: https://mv3.dev
+site_author: Marcelino Veloso III
+repo_url: https://github.com/justmars/django-fragments
+dev_addr: '127.0.0.1:8001'
+theme:
+  name: "material"
+  features:
+    - content.tabs.link
+    - content.code.annotate
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: pink
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+nav:
+  - Overview: index.md
+  - icon: icon.md
+  - input: input.md
+  - nava: nava.md
+  - og: og.md
+  - utils: utils.md
+extra:
+  homepage: https://mv3.dev
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/justmars
+      name: justmars on Github
+    - icon: fontawesome/brands/mastodon
+      link: https://esq.social/@mv
+      name: mv on Mastodon
+copyright: Copyright &copy; Marcelino Veloso III
+plugins:
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_root_toc_entry: false
+            show_category_heading: true
+            show_source: true
+            heading_level: 3
+  - search:
+      lang: en
+markdown_extensions:
+  - footnotes
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      auto_title: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true

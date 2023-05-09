@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "django-fragments"
+description = "Custom template tags for common html idioms in Django, e.g. button, svg, etc."
+version = "0.1.0"
+authors = ["Marcelino G. Veloso III <mars@veloso.one>"]
+readme = "README.md"
+homepage = "https://mv3.dev"
+repository = "https://github.com/justmars/django-fragments"
+documentation = "https://mv3.dev/django-fragments"
+classifiers = [
+  "Programming Language :: Python :: 3.11",
+  "Typing :: Typed",
+  "Development Status :: 4 - Beta",
+  "Framework :: Pytest",
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2"
+beautifulsoup4 = "^4.12.2"
+markdown = "^3.3.7"
+
+[tool.poetry.group.dev.dependencies]
+rich = "^13.3"
+pytest = "^7.2"
+pytest-django = "^4.5.1"
+pytest-cov = "^2.12"
+pre-commit = "^2.21"
+mkdocs = "^1.4"
+mkdocstrings = { extras = ["python"], version = "^0.20.0" }
+mkdocs-material = "^9.1"
+ipykernel = "^6.22.0"
+
+[tool.pytest.ini_options]
+minversion = "7.3"
+addopts = "-ra -q --ds=config.settings --doctest-modules --cov"
+filterwarnings = [
+  "ignore::DeprecationWarning", # DeprecationWarning: pkg_resources is deprecated as an API
+]
+testpaths = ["fragments", "fragments/tests.py"]
+
+[tool.ruff]
+ignore = ["F401", "F403"]
+fixable = ["F", "E", "W", "I001"]
+select = ["F", "E", "W", "I001"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

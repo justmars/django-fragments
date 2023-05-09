@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-fragments"
-description = "Custom template tags for common html idioms in Django, e.g. button, svg, etc."
+description = "Custom template tags for common html idioms in Django."
 version = "0.1.0"
 authors = ["Marcelino G. Veloso III <mars@veloso.one>"]
 readme = "README.md"

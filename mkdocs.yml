@@ -1,5 +1,5 @@
 site_name: django-fragments Docs
-site_description: Custom template tags for common html idioms in Django, e.g. button, svg, etc.
+site_description: Custom template tags for common html idioms in Django.
 site_url: https://mv3.dev
 site_author: Marcelino Veloso III
 repo_url: https://github.com/justmars/django-fragments

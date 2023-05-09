@@ -2,8 +2,16 @@ import re
 
 from django import template
 from django.utils.functional import keep_lazy_text
+from django.utils.safestring import SafeText, mark_safe
 
 from .fragments import register
+
+
+@register.simple_tag
+def attrize(d: dict) -> SafeText:
+    """Unpack a dictionary as attributes, useful for adding attributes to
+    an existing tag."""
+    return mark_safe(" ".join([f'{k}="{v}"' for k, v in d.items()]))
 
 
 @keep_lazy_text

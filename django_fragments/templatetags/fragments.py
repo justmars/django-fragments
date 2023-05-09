@@ -24,8 +24,8 @@ def md(text: str, exts: list[str] = ["attr_list"]) -> SafeText:
 
 @register.simple_tag
 def curr(lhs: str, reversible: str) -> SafeText:
-    """Set `aria-current` as an attribute by comparing a `lhs` path with reverse of `rhs`
-    path.
+    """Returns a string `aria-current` for use as an attribute when `lhs` path matches the
+    `reversible` value that will be passed to the `django.urls.reverse()`.
 
     Args:
         lhs (str): lhs stands for lefthand side, should be first positional element in the tag
@@ -48,7 +48,7 @@ def nava(
 
     Checks if link represented by reverse name url `reversible` is the _current_ path via the request, if it is provided.
 
-    In the latter case, on match of the `request.path` to the `reversible`, add "aria-current=true"
+    In the latter case, on match of the `request.path` to the `reversible`, add `aria-current=true`
 
     Args:
         reversible (str): The value will be passed to the `django.urls.reverse()` function without keyword arguments
@@ -66,13 +66,6 @@ def nava(
         css=css,
         aria=curr(request.path, reversible) if request else "",
     )
-
-
-@register.simple_tag
-def attrize(d: dict) -> SafeText:
-    """Unpack a dictionary as attributes, useful for adding attributes to
-    an existing tag."""
-    return mark_safe(" ".join([f'{k}="{v}"' for k, v in d.items()]))
 
 
 @register.simple_tag

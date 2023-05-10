@@ -77,7 +77,7 @@ def test_whitespace(template, html):
 @pytest.mark.parametrize(
     "data, html",
     [
-        (  # unbound form
+        (  # unbound form, no values
             None,
             (
                 '<div class="fieldWrapper data-hidden="False"'
@@ -90,7 +90,7 @@ def test_whitespace(template, html):
                 ' class="help"></p></div>'
             ),
         ),
-        (  # bound valid form
+        (  # bound valid form, no error message list
             {"message": "Hi there", "email": "foo@example.com"},
             (
                 '<div class="fieldWrapper data-hidden="False"'
@@ -103,15 +103,15 @@ def test_whitespace(template, html):
                 ' class="help"></p></div>'
             ),
         ),
-        (  # bound invalid form
+        (  # bound invalid form, with error message list
             {"message": "Hi there", "email": "foo"},
             (
-                '<div class="fieldWrapper data-hidden="False" data-widget="email"><ul'
-                ' class="errorlist"><li>Enter a valid email address.</li></ul><label'
-                ' for="id_email">Email</label><input type="email" name="email"'
-                ' value="foo" required id="id_email"><p class="help">Testable'
-                ' form</p></div><div class="fieldWrapper data-hidden="False"'
-                ' data-widget="textarea"><label'
+                '<div class="fieldWrapper data-hidden="False"'
+                ' data-widget="email"><label for="id_email">Email</label><input'
+                ' type="email" name="email" value="foo" required id="id_email"><p'
+                ' class="help">Testable form</p><ul class="errorlist"><li>Enter a valid'
+                ' email address.</li></ul></div><div class="fieldWrapper'
+                ' data-hidden="False" data-widget="textarea"><label'
                 ' for="id_message">Message</label><textarea name="message" cols="40"'
                 ' rows="3" required id="id_message">Hi there</textarea><p'
                 ' class="help"></p></div>'

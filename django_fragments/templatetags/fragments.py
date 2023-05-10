@@ -107,13 +107,13 @@ def input(bound: Field, kls: str, label_kls: str | None = None) -> SafeText:
                 data-hidden="{{ bound.is_hidden}}"
                 data-widget="{{ bound.widget_type }}"
             >
-                {{ bound.errors }}
                 <label for="{{ bound.id_for_label }}"
                     {% if label_kls %}class="{{ label_kls }}"{% endif %}>
                     {{bound.label}}
                 </label>
                 {{ bound }}
                 <p class="help">{{ bound.help_text }}</p>
+                {{ bound.errors }}
             </div>
             {% endwhitespaceless %}
             """)  # noqa: E501

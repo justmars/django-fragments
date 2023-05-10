@@ -475,7 +475,7 @@
   
       <p>HTML fragment: <code>&lt;a&gt;</code> tag for desktop/mobile navbar links.</p>
 <p>Checks if link represented by reverse name url <code>reversible</code> is the <em>current</em> path via the request, if it is provided.</p>
-<p>In the latter case, on match of the <code>request.path</code> to the <code>reversible</code>, add "aria-current=true"</p>
+<p>In the latter case, on match of the <code>request.path</code> to the <code>reversible</code>, add <code>aria-current=true</code></p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -590,7 +590,7 @@
 </span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48"></a>
 </span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">    Checks if link represented by reverse name url `reversible` is the _current_ path via the request, if it is provided.</span>
 </span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50"></a>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">    In the latter case, on match of the `request.path` to the `reversible`, add &quot;aria-current=true&quot;</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">    In the latter case, on match of the `request.path` to the `reversible`, add `aria-current=true`</span>
 </span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a>
 </span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="sd">    Args:</span>
 </span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">        reversible (str): The value will be passed to the `django.urls.reverse()` function without keyword arguments</span>
@@ -621,8 +621,8 @@
 
   <div class="doc doc-contents first">
   
-      <p>Set <code>aria-current</code> as an attribute by comparing a <code>lhs</code> path with reverse of <code>rhs</code>
-path.</p>
+      <p>Returns a string <code>aria-current</code> for use as an attribute when <code>lhs</code> path matches the
+<code>reversible</code> value that will be passed to the <code>django.urls.reverse()</code>.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -692,8 +692,8 @@ path.</p>
 <span class="normal"><a href="#__codelineno-0-36">36</a></span>
 <span class="normal"><a href="#__codelineno-0-37">37</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="nd">@register</span><span class="o">.</span><span class="n">simple_tag</span>
 </span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="k">def</span> <span class="nf">curr</span><span class="p">(</span><span class="n">lhs</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">reversible</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SafeText</span><span class="p">:</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Set `aria-current` as an attribute by comparing a `lhs` path with reverse of `rhs`</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">    path.</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a string `aria-current` for use as an attribute when `lhs` path matches the</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">    `reversible` value that will be passed to the `django.urls.reverse()`.</span>
 </span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a>
 </span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">    Args:</span>
 </span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">        lhs (str): lhs stands for lefthand side, should be first positional element in the tag</span>

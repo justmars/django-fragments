@@ -8,7 +8,6 @@ poetry.lock
 *.db-wal
 *.rdb
 .env.*
-test.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

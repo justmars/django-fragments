@@ -12,16 +12,15 @@ Any applicable tweaks done by [django_widget_tweaks](https://github.com/jazzband
     <form method="post" action="{% url 'account_signup' %}">
       {% csrf_token %}
       {# (1) #}
-      {% input field=form.email|attr:"required"|attr:"placeholder" wrapper_kls="fld" %}
+      {% input field=form.email|attr:"required"|attr:"placeholder" kls="fx" %}
       {# single input = multiple html tags #}
       ...
     </form>
     ```
 
-    1. Note `fld`. This enables future styling to related css targets:
-        1. `.fld > ul.errorlist`
-        2. `.fld span.help_css`
-        3. `.fld span.help_css`
+    1. Note `fx`. This enables future styling to related css targets:
+        1. `.fx > ul.errorlist`
+        2. `.fx span.help`
 
 === "_after_: html :simple-html5:"
 
@@ -31,7 +30,7 @@ Any applicable tweaks done by [django_widget_tweaks](https://github.com/jazzband
       <div> {# how the input field is rendered #}
         <label for="id_email">E-mail</label>
         <input type="email" name="email" placeholder="" autocomplete="email" required="" id="id_email">
-        <span class="flex items-center font-small tracking-wide text-pink-500 text-xs mt-1 ml-1"></span>
+        <span class="help"></span>
       </div>
       ...
     </form>

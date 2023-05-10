@@ -6,7 +6,6 @@
 
 Used for partial template rendering of: `<input>`, `<svg>` tags. Originally for a Django [boilerplate](https://start-django.fly.dev), refactored out into an independent library.
 
-
 ## Setup
 
 After installation, e.g. `pip install django-fragments`

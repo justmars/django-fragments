@@ -24,7 +24,7 @@ Invoke via `{% load fragments %}`
 ### Shortcuts
 
 1. [`{% icon %}`](./icon.md) - idiomatic `<svg>` combiner with neighboring / parent tags
-2. [`{% input %}`](./input.md) - A limited, simple `<input>`-based `BoundField` + related `<label>` and tags for `help`, `errorlist` (complements [django-widget-tweaks](https://github.com/jazzband/django-widget-tweaks)).
+2. [`{% hput %}`](./hput.md) - encapsulated, [tweakable](https://github.com/jazzband/django-widget-tweaks) `<input>` with option for inline validation.
 3. [`{% nava %}`](./nava.md#nava) - Uses `format_html` to output an `<a>` element fit for desktop/mobile navbar links.
 4. [`{% curr %}`](./nava.md#curr) - Outputs string `aria-current=page` if url is current.
 

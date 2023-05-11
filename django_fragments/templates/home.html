@@ -1,0 +1,13 @@
+{% extends './_test_base.html' %}
+{% load fragments %}
+{% block content %}
+  <main class="container">
+    <form method="post">
+      {% csrf_token %}
+      {% url 'test_fragments:test_page' as vurl %}
+      {% hput form.email kls='test' label_kls='xx' validate=vurl %}
+      {% hput form.message kls='test' validate=vurl %}
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+{% endblock content %}

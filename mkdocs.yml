@@ -25,7 +25,7 @@ theme:
 nav:
   - Overview: index.md
   - icon: icon.md
-  - input: input.md
+  - hput: hput.md
   - nava: nava.md
   - og: og.md
   - utils: utils.md

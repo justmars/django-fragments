@@ -2,7 +2,7 @@ from pathlib import Path
 
 from django import template
 from django.conf import settings
-from django.forms import Field
+from django.forms import BoundField
 from django.http.request import HttpRequest
 from django.template import Context, Template
 from django.template.loader import render_to_string
@@ -96,15 +96,35 @@ def icon(
 
 
 @register.simple_tag
-def input(bound: Field, kls: str, label_kls: str | None = None) -> SafeText:
-    """Can likely replace this with prospective Django 5.0's
-    `django.forms.BoundField.as_field_group`"""
+def hput(
+    bound: BoundField,
+    kls: str | None = "h",
+    label_kls: str | None = None,
+    validate: str | None = None,
+) -> SafeText:
+    """An encapsulation of an idiomatic BoundField with an optional ability for htmx inline
+    field validation if a url is passed as `validate` argument.
+
+    Args:
+        bound (BoundField): The field to render
+        kls (str | None, optional): If supplied will supply the containing div's class attribute. Defaults to "h".
+        label_kls (str | None, optional): If supplied will supply the containing div's class attribute. Defaults to None.
+        validate (str | None, optional): A url that should be the form's submit url for inline field validation using htmx. Defaults to None.
+
+    Returns:
+        SafeText: The html fragment consisting of a wrapped field
+    """  # noqa: E501
+    from .helpers import hx_enable_inline_validation
+
+    attrs = hx_enable_inline_validation(bound, validate) if validate else ""
     return mark_safe(
         Template("""
             {% load fragments %}
             {% whitespaceless %}
-            <div class="{{ kls }}
-                data-hidden="{{ bound.is_hidden}}"
+            <div {{attrs}}
+                {% if bound.is_hidden %}hidden{% endif %}
+                {% if bound.errors %}data-invalid=true{% endif %}
+                class="{{ kls }}"
                 data-widget="{{ bound.widget_type }}"
             >
                 <label for="{{ bound.id_for_label }}"
@@ -112,7 +132,7 @@ def input(bound: Field, kls: str, label_kls: str | None = None) -> SafeText:
                     {{bound.label}}
                 </label>
                 {{ bound }}
-                <p class="help">{{ bound.help_text }}</p>
+                <small>{{ bound.help_text }}</small>
                 {{ bound.errors }}
             </div>
             {% endwhitespaceless %}
@@ -121,8 +141,9 @@ def input(bound: Field, kls: str, label_kls: str | None = None) -> SafeText:
             context=Context(
                 {
                     "bound": bound,
-                    "kls": kls,
                     "label_kls": label_kls,
+                    "kls": kls,
+                    "attrs": attrs,
                 },
             )
         )

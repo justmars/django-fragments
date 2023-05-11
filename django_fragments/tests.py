@@ -80,44 +80,55 @@ def test_whitespace(template, html):
         (  # unbound form, no values
             None,
             (
-                '<div class="fieldWrapper data-hidden="False"'
-                ' data-widget="email"><label for="id_email">Email</label><input'
-                ' type="email" name="email" required id="id_email"><p'
-                ' class="help">Testable form</p></div><div class="fieldWrapper'
-                ' data-hidden="False" data-widget="textarea"><label'
+                '<div class="fieldWrapper" data-widget="email"><label'
+                ' for="id_email">Email</label><input type="email" name="email" required'
+                ' id="id_email"><small>Testable form</small></div><div'
+                ' class="fieldWrapper" data-widget="textarea"><label'
                 ' for="id_message">Message</label><textarea name="message" cols="40"'
-                ' rows="3" required id="id_message"></textarea><p'
-                ' class="help"></p></div>'
+                ' rows="3" required id="id_message"></textarea><small></small></div>'
             ),
         ),
         (  # bound valid form, no error message list
             {"message": "Hi there", "email": "foo@example.com"},
             (
-                '<div class="fieldWrapper data-hidden="False"'
-                ' data-widget="email"><label for="id_email">Email</label><input'
-                ' type="email" name="email" value="foo@example.com" required'
-                ' id="id_email"><p class="help">Testable form</p></div><div'
-                ' class="fieldWrapper data-hidden="False" data-widget="textarea"><label'
+                '<div class="fieldWrapper" data-widget="email"><label'
+                ' for="id_email">Email</label><input type="email" name="email"'
+                ' value="foo@example.com" required id="id_email"><small>Testable'
+                ' form</small></div><div class="fieldWrapper"'
+                ' data-widget="textarea"><label'
                 ' for="id_message">Message</label><textarea name="message" cols="40"'
-                ' rows="3" required id="id_message">Hi there</textarea><p'
-                ' class="help"></p></div>'
+                ' rows="3" required id="id_message">Hi'
+                " there</textarea><small></small></div>"
             ),
         ),
         (  # bound invalid form, with error message list
             {"message": "Hi there", "email": "foo"},
             (
-                '<div class="fieldWrapper data-hidden="False"'
-                ' data-widget="email"><label for="id_email">Email</label><input'
-                ' type="email" name="email" value="foo" required id="id_email"><p'
-                ' class="help">Testable form</p><ul class="errorlist"><li>Enter a valid'
-                ' email address.</li></ul></div><div class="fieldWrapper'
-                ' data-hidden="False" data-widget="textarea"><label'
+                '<div data-invalid=true class="fieldWrapper" data-widget="email"><label'
+                ' for="id_email">Email</label><input type="email" name="email"'
+                ' value="foo" required id="id_email"><small>Testable form</small><ul'
+                ' class="errorlist"><li>Enter a valid email'
+                ' address.</li></ul></div><div class="fieldWrapper"'
+                ' data-widget="textarea"><label'
                 ' for="id_message">Message</label><textarea name="message" cols="40"'
-                ' rows="3" required id="id_message">Hi there</textarea><p'
-                ' class="help"></p></div>'
+                ' rows="3" required id="id_message">Hi'
+                " there</textarea><small></small></div>"
             ),
         ),
     ],
 )
 def test_contact_form(data, html):
     assert ContactForm(data).render() == html  # type: ignore
+
+
+def test_boundfield_with_inline_validation():
+    template = """{% load fragments %}{% spaceless %}{% hput form.email validate="/this-is-an-endpoint" %}{% endspaceless %}"""
+    context = Context({"form": ContactForm()})
+    html = (
+        '<div id="hput_id_email" hx-select="#hput_id_email"'
+        ' hx-post="/this-is-an-endpoint" hx-trigger="blur from:find input"'
+        ' hx-target="#hput_id_email" hx-swap="outerHTML" class="h"'
+        ' data-widget="email"><label for="id_email">Email</label><input type="email"'
+        ' name="email" required id="id_email"><small>Testable form</small></div>'
+    )
+    assert Template(template).render(context=context) == html

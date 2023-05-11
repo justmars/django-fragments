@@ -1,6 +1,7 @@
 import re
 
 from django import template
+from django.forms import BoundField
 from django.utils.functional import keep_lazy_text
 from django.utils.safestring import SafeText, mark_safe
 
@@ -12,6 +13,39 @@ def attrize(d: dict) -> SafeText:
     """Unpack a dictionary as attributes, useful for adding attributes to
     an existing tag."""
     return mark_safe(" ".join([f'{k}="{v}"' for k, v in d.items()]))
+
+
+def hx_enable_inline_validation(bound: BoundField, url: str) -> str:
+    """Given a `BoundField` and a `url`, implement inline field validation proposed by
+    [hernantz](https://hernantz.github.io/inline-form-validation-with-django-and-htmx.html).
+    It makes use of various tags from [htmx](https://htmx.org).
+
+    The gist: form is prematurely submitted (because of `hx-post`) as an AJAX-request,
+    the partial template response will `hx-swap` an `hx-target`. In other words, the
+    old field is replaced by the same field... but now as a result of `form.is_valid()`.
+
+    The response,if it contains errors, will include an error list for the field.
+
+    Instead of rendering the entire partial response, the use of `hx-select` limits the
+    replacement to a segment of the partial response.
+
+    Args:
+        bound (BoundField): A Django field with data previously submitted
+        url (str): Where the form is submitted.
+    Returns:
+        str: A string of text attributes that can be added to a wrapping div of a `BoundField`
+    """  # noqa: E501
+    idx = f"hput_{bound.id_for_label}"
+    return attrize(
+        {
+            "id": idx,
+            "hx-select": f"#{idx}",
+            "hx-post": url,
+            "hx-trigger": "blur from:find input",
+            "hx-target": f"#{idx}",
+            "hx-swap": "outerHTML",
+        }
+    )
 
 
 @keep_lazy_text

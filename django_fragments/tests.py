@@ -80,7 +80,14 @@ def test_whitespace(template, html):
         (  # unbound form, no values
             None,
             (
-                '<div class="fieldWrapper" data-widget="email"><label'
+                '<div class="fieldWrapper" data-widget="select"><label'
+                ' for="id_category">Yes/No</label><select name="category"'
+                ' id="id_category"><option value="yes">Yes, I approve</option><option'
+                ' value="no" selected>No, I do not</option><option'
+                ' value="maybe">I&#x27;ll think about it</option><option'
+                ' value="meh">Won&#x27;t even think</option><option value="ignore">No'
+                " reply</option></select><small>This is a category!</small></div><div"
+                ' class="fieldWrapper" data-widget="email"><label'
                 ' for="id_email">Email</label><input type="email" name="email" required'
                 ' id="id_email"><small>Testable form</small></div><div'
                 ' class="fieldWrapper" data-widget="textarea"><label'
@@ -89,9 +96,20 @@ def test_whitespace(template, html):
             ),
         ),
         (  # bound valid form, no error message list
-            {"message": "Hi there", "email": "foo@example.com"},
+            {
+                "category": ContactForm.Category.NO,
+                "message": "Hi there",
+                "email": "foo@example.com",
+            },
             (
-                '<div class="fieldWrapper" data-widget="email"><label'
+                '<div class="fieldWrapper" data-widget="select"><label'
+                ' for="id_category">Yes/No</label><select name="category"'
+                ' id="id_category"><option value="yes">Yes, I approve</option><option'
+                ' value="no" selected>No, I do not</option><option'
+                ' value="maybe">I&#x27;ll think about it</option><option'
+                ' value="meh">Won&#x27;t even think</option><option value="ignore">No'
+                " reply</option></select><small>This is a category!</small></div><div"
+                ' class="fieldWrapper" data-widget="email"><label'
                 ' for="id_email">Email</label><input type="email" name="email"'
                 ' value="foo@example.com" required id="id_email"><small>Testable'
                 ' form</small></div><div class="fieldWrapper"'
@@ -102,9 +120,20 @@ def test_whitespace(template, html):
             ),
         ),
         (  # bound invalid form, with error message list
-            {"message": "Hi there", "email": "foo"},
+            {
+                "category": ContactForm.Category.NO,
+                "message": "Hi there",
+                "email": "foo",
+            },
             (
-                '<div data-invalid=true class="fieldWrapper" data-widget="email"><label'
+                '<div class="fieldWrapper" data-widget="select"><label'
+                ' for="id_category">Yes/No</label><select name="category"'
+                ' id="id_category"><option value="yes">Yes, I approve</option><option'
+                ' value="no" selected>No, I do not</option><option'
+                ' value="maybe">I&#x27;ll think about it</option><option'
+                ' value="meh">Won&#x27;t even think</option><option value="ignore">No'
+                " reply</option></select><small>This is a category!</small></div><div"
+                ' data-invalid=true class="fieldWrapper" data-widget="email"><label'
                 ' for="id_email">Email</label><input type="email" name="email"'
                 ' value="foo" required id="id_email"><small>Testable form</small><ul'
                 ' class="errorlist"><li>Enter a valid email'

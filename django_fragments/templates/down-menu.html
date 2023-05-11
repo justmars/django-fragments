@@ -1,9 +1,0 @@
-<div id="{{idx}}">
-  <button id="{{idx}}-btn" aria-expanded="false" aria-haspopup="true"></button>
-  <div hidden></div>
-  <ul hidden role="menu" aria-orientation="vertical" aria-labelledby="{{idx}}" tabindex="-1">
-    {% for ch in choices %}
-      <li role="menuitem" tabindex="-1" >{{ch}}</li>
-    {% endfor  %}
-  </ul>
-</div>

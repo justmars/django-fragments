@@ -1,14 +1,14 @@
-{% load fragments %}
-<nav>
-  <ul>
-    <li>
-      <a href="/" {% curr lhs=request.path reversible="test_fragments:test_page" %}>
-        <strong>Brand</strong>
-      </a>
-    </li>
-  </ul>
-  <ul>
-    {# nava is a shortcut to 'curr' above but without ability to style inner text, e.g. '<strong>' #}
-    <li>{% nava 'test_fragments:contact' 'Contact' request=request %}</li>
+{% load static fragments %}
+<nav style="padding-top: 20px;">
+  <aside id="nav-menu-id-top">
+    <button id="nav-menu-id-button" type="button" aria-expanded="false" aria-haspopup="true">Menu</button>
+    <ul hidden id="nav-menu-id-top-options" role="menu" aria-orientation="vertical" aria-labelledby="nav-menu-id-button" tabindex="-1">
+      {% include './item.html' with label='Home' order=1 evt='userHasChosen' reversible='test_fragments:test_page' %}
+      {% include './item.html' with label='About' order=2 evt='userHasChosen' reversible='test_fragments:about' %}
+      {% include './item.html' with label='Contact' order=3 evt='userHasChosen' reversible='test_fragments:contact' %}
+    </ul>
+  </aside>
   </ul>
 </nav>
+<script src="{% static 'chooseDown.js' %}"></script>
+<script>chooseDown("nav-menu-id-top")</script>

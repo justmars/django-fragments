@@ -8,6 +8,10 @@ class HomePage(TemplateView):
     template_name = "home.html"
 
 
+class AboutPage(TemplateView):
+    template_name = "about.html"
+
+
 class ContactFormView(FormView):
     template_name = "contact.html"
     form_class = ContactForm

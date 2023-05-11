@@ -1,0 +1,8 @@
+{% load fragments %}
+<li id="item-{{order}}" _="on {{evt}} if I am the target get the first <a/> in me then click() on it end">
+  <a href="{% url reversible %}" role="menuitem" tabindex="-1" {% curr lhs=request.path reversible=reversible %}
+    onclick='event.stopPropagation()'
+  >
+    {{label}}
+  </a>
+</li>

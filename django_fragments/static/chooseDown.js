@@ -1,3 +1,20 @@
+function verifySelectable(id) {
+  let container = document.getElementById(id) || false;
+  if (!container) {
+    throw "Missing container.";
+  }
+  let items = [
+    document.querySelector(`#${id} > button`) || false,
+    document.querySelector(`#${id} > ul`) || false,
+    document.querySelectorAll(`#${id} > ul > li`) || false,
+  ];
+  for (let item of items) {
+    if (!item) {
+      throw "Missing element.";
+    }
+  }
+  return items;
+}
 /**
  *
  * Show/hide list of nodes, issue event `userHasChosen` to focused node, this is event target.
@@ -16,26 +33,7 @@
  * @param {*} selectable_group_id
  */
 function chooseDown(selectable_group_id) {
-  container = document.getElementById(selectable_group_id) || false;
-  if (!container) {
-    throw "Missing container.";
-  }
-  const button =
-    document.querySelector(`#${selectable_group_id} > button`) || false;
-  if (!button) {
-    throw "Missing button.";
-  }
-
-  const nodeList = document.querySelector(`#${selectable_group_id} > ul`);
-  if (!nodeList) {
-    throw "Missing list of nodes.";
-  }
-
-  const nodeItems = nodeList.getElementsByTagName("li");
-  if (!nodeItems) {
-    throw "No items found in the list of nodes.";
-  }
-
+  const [button, nodeList, nodeItems] = verifySelectable(selectable_group_id);
   const arrowKeys = ["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
   const eventToEmit = new Event("userHasChosen", {
     bubbles: false,
@@ -99,7 +97,7 @@ function chooseDown(selectable_group_id) {
     "blur",
     (evt) => {
       if (evt.relatedTarget) {
-        console.log(`blurred from ${evt.relatedTarget.id}`);
+        console.log(`blurred: ${evt.relatedTarget.id}`);
         if (evt.relatedTarget === nodeList) {
           let node = nodeItems[parseInt(button.dataset.index) - 1];
           console.log(`matched ${node.id}`);
@@ -113,6 +111,13 @@ function chooseDown(selectable_group_id) {
           });
         }
       }
+      console.log(`targeted: ${evt.target.id}`);
+      if (evt.target.id === button.id) {
+        /// debugger;
+        let node = nodeItems[parseInt(button.dataset.index) - 1];
+        console.log(`matched ${node.id}`);
+        node.dispatchEvent(eventToEmit);
+      }
       hideBox(evt);
     },
     false
@@ -120,7 +125,7 @@ function chooseDown(selectable_group_id) {
   button.addEventListener(
     "click",
     (evt) => {
-      console.log(`${evt} ${evt.relatedTarget}`);
+      console.log(`click on: ${evt} ${evt.relatedTarget}`);
       toggleBox(evt);
     },
     false

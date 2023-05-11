@@ -1,0 +1,14 @@
+{% load fragments %}
+<nav>
+  <ul>
+    <li>
+      <a href="/" {% curr lhs=request.path reversible="test_fragments:test_page" %}>
+        <strong>Brand</strong>
+      </a>
+    </li>
+  </ul>
+  <ul>
+    {# nava is a shortcut to 'curr' above but without ability to style inner text, e.g. '<strong>' #}
+    <li>{% nava 'test_fragments:contact' 'Contact' request=request %}</li>
+  </ul>
+</nav>

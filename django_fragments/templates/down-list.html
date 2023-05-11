@@ -1,0 +1,11 @@
+<div id="{{idx}}">
+  <button id="{{idx}}-btn" aria-expanded="false" aria-haspopup="true"></button>
+  <div hidden></div>
+  <ul hidden role="listbox" aria-orientation="vertical" aria-labelledby="{{idx}}" tabindex="-1">
+    {% for ch in choices %}
+      <li role="option" aria-selected="false" data-key="{{ch.0|default:'None'}}" data-value="{{ch.1}}" tabindex="-1">
+        <span>{{ch.1}}</span>
+      </li>
+    {% endfor  %}
+  </ul>
+</div>

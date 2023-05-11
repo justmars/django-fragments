@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>django-fragments sample</title>
+  </head>
+  <body class="container">
+    {% include './_nav.html' %}
+    <main>
+      {% block content %}
+      {% endblock content %}
+    </main>
+  </body>
+  <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+</html>

@@ -1,13 +1,7 @@
-{% extends './_test_base.html' %}
-{% load fragments %}
+{% extends './_test.html' %}
 {% block content %}
-  <main class="container">
-    <form method="post">
-      {% csrf_token %}
-      {% url 'test_fragments:test_page' as vurl %}
-      {% hput form.email kls='test' label_kls='xx' validate=vurl %}
-      {% hput form.message kls='test' validate=vurl %}
-      <button type="submit">Submit</button>
-    </form>
-  </main>
+<hgroup>
+  <h2>Django Fragments</h2>
+  <h3>Demo of its bits and pieces.</h3>
+</hgroup>
 {% endblock content %}

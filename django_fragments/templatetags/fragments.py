@@ -116,6 +116,9 @@ def hput(
     """  # noqa: E501
     from .helpers import hx_enable_inline_validation
 
+    if not isinstance(bound, BoundField):
+        raise Exception(f"Improper field {bound=}")
+
     attrs = hx_enable_inline_validation(bound, validate) if validate else ""
     return mark_safe(
         Template("""

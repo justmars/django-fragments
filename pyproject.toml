@@ -19,6 +19,7 @@ python = "^3.11"
 django = "^4.2"
 beautifulsoup4 = "^4.12.2"
 markdown = "^3.3.7"
+django-widget-tweaks = "^1.4.12"
 
 [tool.poetry.group.dev.dependencies]
 rich = "^13.3"

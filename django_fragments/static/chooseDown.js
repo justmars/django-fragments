@@ -1,48 +1,49 @@
 /**
- * Show/hide list of nodes, issue event `prepSelection` to focused node, this is event target.
+ *
+ * Show/hide list of nodes, issue event `userHasChosen` to focused node, this is event target.
  *
  * The list can either be a "menu" or a "listbox" so the way the target behaves will be different.
  * In a "menu", the target may have a child <a> that needs to be clicked.
  * In a "listbox", the target may be used as part of a form select input.
  *
- * The nodes are marked "aria-selected" / "data-ok" for "focus", can be used as selectors for any
- * css styling to be done via inline HTML. Focus does not mean choice. When a valid event occurs that
- * connotes choice, the node is dispatched with the custom `prepSelection` event, and nodes are re-hidden.
+ * The nodes are marked "aria-selected" / "data-ok" for "focus". Either of these nodes can be used as selectors
+ * for any css styling to be done via inline HTML. Focus does not mean choice. Instead it implies a candidate choice
+ * has been made due to browser events: a hovering effect or a up, down key press, a touch event on a mobile device, etc.
  *
- * @param {*} btn_id A button element represnted by its `btn_id` which contains an aria-expanded attribute which determines whether the menu should be shown or hidden
- * @param {*} overlay_id When dropdown is shown, an overlay `overlay_id` makes clicking on the same close the menu
- * @param {*} list_id The <ul> dropdown proper's `list_id` to display items that are clickable
- * @param {*} component_id Encapsulating container of button, list and overlay.
+ * When a valid event occurs that converts this candidate choice to the actual selected choice,
+ * the node is dispatched with the a `userHasChosen` event, and nodes are re-hidden.
+ *
+ * @param {*} selectable_group_id
  */
-function prepSelectionFromDropdown(btn_id, overlay_id, list_id, component_id) {
-  const arrowKeys = ["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
+function chooseDown(selectable_group_id) {
+  container = document.getElementById(selectable_group_id) || false;
+  if (!container) {
+    throw "Missing container.";
+  }
+  const button =
+    document.querySelector(`#${selectable_group_id} > button`) || false;
+  if (!button) {
+    throw "Missing button.";
+  }
 
-  const eventToEmit = new Event("prepSelection", {
+  const nodeList = document.querySelector(`#${selectable_group_id} > ul`);
+  if (!nodeList) {
+    throw "Missing list of nodes.";
+  }
+
+  const nodeItems = nodeList.getElementsByTagName("li");
+  if (!nodeItems) {
+    throw "No items found in the list of nodes.";
+  }
+
+  const arrowKeys = ["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
+  const eventToEmit = new Event("userHasChosen", {
     bubbles: false,
     cancelable: false,
   });
 
-  const component = document.getElementById(component_id) || false;
-  if (!component) throw "Missing component_id";
-  component.addEventListener("blur", (evt) => hideBox(evt));
-
-  const overlay = document.getElementById(overlay_id) || false;
-  if (!overlay) throw "Missing overlay_id";
-  overlay.addEventListener("click", (evt) => hideBox(evt));
-
-  const button = document.getElementById(btn_id) || false;
-  if (!button) throw "Missing btn_id";
-
-  const nodeList = document.getElementById(list_id) || false;
-  if (!nodeList) throw "Missing list_id";
-
-  const nodeListItems = nodeList.getElementsByTagName("li") || false;
-  if (!nodeList) throw "Missing list_id's <li> tags";
-  for (let i = 0; i < nodeListItems.length; i++)
-    nodeListItems[i].setAttribute("id", `${list_id}-${i + 1}`);
-
   // add event listener to each focusable item
-  const nodeOptions = Array.prototype.slice.call(nodeListItems); // to use forEach
+  const nodeOptions = Array.prototype.slice.call(nodeItems); // to use forEach
   nodeOptions.forEach((node) => {
     node.addEventListener("mouseover", () => {
       markFocus(node);
@@ -90,24 +91,40 @@ function prepSelectionFromDropdown(btn_id, overlay_id, list_id, component_id) {
         inline: "nearest",
       }); // keydown into middle of long item list
 
-    // console.log(`focused ${node.id}`);
+    console.log(`focused ${node.id}`);
   }
 
   // Ready button events which shows / hides / focuses nodes
   button.addEventListener(
     "blur",
     (evt) => {
-      if (evt.relatedTarget === nodeList) {
-        // console.log(`clicked on list ${evt}`);
-        let clicked_node = nodeListItems[parseInt(button.dataset.index) - 1];
-        // console.log(`matched ${clicked_node}`);
-        clicked_node.dispatchEvent(eventToEmit);
+      if (evt.relatedTarget) {
+        console.log(`blurred from ${evt.relatedTarget.id}`);
+        if (evt.relatedTarget === nodeList) {
+          let node = nodeItems[parseInt(button.dataset.index) - 1];
+          console.log(`matched ${node.id}`);
+          node.dispatchEvent(eventToEmit);
+        } else {
+          nodeOptions.forEach((node) => {
+            if (evt.relatedTarget.id === node.id) {
+              console.log(`matched ${node.id}`);
+              node.dispatchEvent(eventToEmit);
+            }
+          });
+        }
       }
       hideBox(evt);
     },
     false
   );
-  button.addEventListener("click", (evt) => toggleBox(evt), false);
+  button.addEventListener(
+    "click",
+    (evt) => {
+      console.log(`${evt} ${evt.relatedTarget}`);
+      toggleBox(evt);
+    },
+    false
+  );
   button.addEventListener("touchstart", (evt) => {
     evt.preventDefault(); // without this, will auto-mouse click
     toggleBox(evt);
@@ -123,24 +140,24 @@ function prepSelectionFromDropdown(btn_id, overlay_id, list_id, component_id) {
 
         case "ArrowDown":
         case "ArrowRight":
-          currIndex = parseInt(button.dataset.index);
-          currIndex === nodeListItems.length
+          let currDownIndex = parseInt(button.dataset.index);
+          currDownIndex === nodeItems.length
             ? (button.dataset.index = 1)
-            : (button.dataset.index = currIndex + 1);
-          markFocus(nodeListItems[parseInt(button.dataset.index) - 1], evt);
+            : (button.dataset.index = currDownIndex + 1);
+          markFocus(nodeItems[parseInt(button.dataset.index) - 1], evt);
           break;
 
         case "ArrowUp":
         case "ArrowLeft":
-          currIndex = parseInt(button.dataset.index);
-          currIndex === 1
-            ? (button.dataset.index = nodeListItems.length)
-            : (button.dataset.index = currIndex - 1);
-          markFocus(nodeListItems[parseInt(button.dataset.index) - 1], evt);
+          let currUpIndex = parseInt(button.dataset.index);
+          currUpIndex === 1
+            ? (button.dataset.index = nodeItems.length)
+            : (button.dataset.index = currUpIndex - 1);
+          markFocus(nodeItems[parseInt(button.dataset.index) - 1], evt);
           break;
 
         case "Enter":
-          const currNode = nodeListItems[parseInt(button.dataset.index) - 1];
+          const currNode = nodeItems[parseInt(button.dataset.index) - 1];
           currNode.dispatchEvent(eventToEmit);
           break;
       }
@@ -148,27 +165,28 @@ function prepSelectionFromDropdown(btn_id, overlay_id, list_id, component_id) {
   });
 
   function toggleBox(evt) {
+    evt.preventDefault();
     button.getAttribute("aria-expanded") !== "true"
       ? showBox(evt)
       : hideBox(evt);
   }
+
   function showBox(evt) {
-    overlay.removeAttribute("hidden");
     nodeList.removeAttribute("hidden");
     button.setAttribute("aria-expanded", "true");
     button.setAttribute("aria-hidden", "false");
-    // console.log(`show ${list_id} ${evt.type}`);
+    console.log(`show ${nodeList.id} ${evt.type}`);
     if (!button.dataset.index) button.dataset.index = 1; // if index not set
-    const focusable = nodeListItems[parseInt(button.dataset.index) - 1];
+    const focusable = nodeItems[parseInt(button.dataset.index) - 1];
     if (focusable && focusable.contains(evt.target)) markFocus(focusable);
   }
+
   function hideBox(evt) {
     if (button.getAttribute("aria-expanded") === "true") {
-      overlay.setAttribute("hidden", "true");
       nodeList.setAttribute("hidden", "true");
       button.setAttribute("aria-expanded", "false");
       button.setAttribute("aria-hidden", "true");
     }
-    // console.log(`hide ${list_id} ${evt.target} ${evt.type}`);
+    console.log(`hide ${nodeList.id} ${evt.target} ${evt.type}`);
   }
 }

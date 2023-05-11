@@ -7,7 +7,7 @@
 </hgroup>
 <form method="post">
   {% csrf_token %}
-  {% sel form.category idx='dwnr' %}
+  {% include './down-list.html' with field=form.category idx='dwnr' %}
   {% url 'test_fragments:contact' as vurl %}
   {% hput form.email kls='test' label_kls='xx' validate=vurl %}
   {% hput form.message kls='test'  %}

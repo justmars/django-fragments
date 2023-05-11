@@ -152,19 +152,3 @@ def hput(
         )
         .strip()
     )
-
-
-@register.inclusion_tag("down-list.html")
-def sel(bound: BoundField, idx: str, **kwargs):
-    if not isinstance(bound, BoundField):
-        raise Exception(f"Improper field {bound=}")
-
-    if bound.widget_type != "select":  # type: ignore
-        raise Exception(f"Requires: <select>; got {bound.widget_type=}")  # type: ignore # noqa: E501
-
-    return {"field": bound, "idx": idx, **kwargs}
-
-
-@register.inclusion_tag("down-menu.html")
-def menu(idx: str, **kwargs):
-    return {"idx": idx, **kwargs}

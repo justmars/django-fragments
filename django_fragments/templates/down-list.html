@@ -1,31 +1,31 @@
 {% load static widget_tweaks fragments %}
 {% whitespaceless %}
-<div id="{{idx}}-faux" class="fragment-select-dropdown">
-  {{ field|append_attr:"hidden" }}{# actual: <select#{{field.id_for_label}} /> #}
-  <label id="{{idx}}" for="{{field.id_for_label}}">{{field.label}}</label>
-  <button id="{{idx}}-btn" aria-expanded="false" aria-haspopup="true">
-    <span id="{{idx}}-faux-text">{{field.value.label|default:'None'}}</span>{# visible fake representing hidden select #}
-    {% if faux %}{% icon name=faux css="{{faux_css|default_if_none:'faux_icon'}}" parent_class="{{faux_parent_css|default_if_none:'faux_parent_css'}}" %}{% endif %}
+<script type="text/hyperscript">
+  def setOption(key, val)
+    for option in <select#{{field.id_for_label}} > option/>
+      tell option
+        if option@value is key set option@selected to 'true'
+        else remove @selected from option end
+      end
+    end
+    set #{{idx}}-txt's innerText to val
+  end
+</script>
+{{ field|append_attr:"hidden" }}
+<label id="{{idx}}-label" for="{{field.id_for_label}}">{{field.label}}</label>
+<div id="{{idx}}" style="margin-top: 10px; position: relative;">
+  <button type="button" aria-expanded="false" aria-haspopup="true">
+    <span id="{{idx}}-txt">{{field.value.label|default:'None'}}</span>
   </button>
-  <ul hidden id="{{idx}}-options" role="listbox" aria-orientation="vertical" aria-labelledby="{{idx}}" tabindex="-1" {% if list_effect %}_="{{list_effect}}"{% endif %}>
-    {% for choice in field.field.choices %}{# triggerable event for each: userChoiceDropped #}
-      <li id="{{idx}}-options-{{forloop.counter}}" role="option" aria-selected="false" data-key="{{choice.0|default:'None'}}" data-value="{{choice.1}}" tabindex="-1"
-        _="on userHasChosen
-            for option in <select#{{field.id_for_label}} > option/>
-              tell option
-                if option@value is @data-key set option@selected to 'true'
-                else remove @selected from option
-                end
-              end
-            end
-            set #{{idx}}-faux-text's innerText to @data-value
-          end">
+  <ul hidden role="listbox" aria-orientation="vertical" aria-labelledby="{{idx}}-label" tabindex="-1">
+    {% for choice in field.field.choices %}{# lsiten for event: userHasChosen #}
+      <li role="option" aria-selected="false" _="on userHasChosen setOption(@data-key, @data-value) end"
+        data-key="{{choice.0|default:'None'}}" data-value="{{choice.1}}" tabindex="-1">
         <span>{{choice.1}}</span>
-        {% if marker %}{% icon name=marker css="{{marker_css|default_if_none:'marker_icon'}}" parent_class="{{marker_parent_css|default_if_none:'marker_parent_css'}}" %}{% endif %}
       </li>
     {% endfor  %}
   </ul>
 </div>
 {% endwhitespaceless %}
 <script src="{% static 'chooseDown.js' %}"></script>
-<script>chooseDown("{{idx}}-faux")</script>
+<script>chooseDown("{{idx}}")</script>{# chooseDown.js: emit userHasChosen event, unhide <ul role="listbox"> #}

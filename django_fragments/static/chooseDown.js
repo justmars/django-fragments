@@ -1,12 +1,29 @@
 function verifySelectable(id) {
+  function setId(el, id, suffix) {
+    if (!el) {
+      return false;
+    }
+    el.setAttribute("id", `${id}-${suffix}`);
+    return el;
+  }
+  function setManyIds(els, id, prefix) {
+    if (!els) {
+      return false;
+    }
+    for (let i = 0; i < els.length; i++) {
+      setId(els[i], id, `${prefix}-${i + 1}`);
+    }
+    return els;
+  }
+
   let container = document.getElementById(id) || false;
   if (!container) {
     throw "Missing container.";
   }
   let items = [
-    document.querySelector(`#${id} > button`) || false,
-    document.querySelector(`#${id} > ul`) || false,
-    document.querySelectorAll(`#${id} > ul > li`) || false,
+    setId(document.querySelector(`#${id} > button`), id, "btn"),
+    setId(document.querySelector(`#${id} > ul`), id, "listbox"),
+    setManyIds(document.querySelectorAll(`#${id} > ul > li`), id, "option"),
   ];
   for (let item of items) {
     if (!item) {
@@ -15,6 +32,7 @@ function verifySelectable(id) {
   }
   return items;
 }
+
 /**
  *
  * Show/hide list of nodes, issue event `userHasChosen` to focused node, this is event target.

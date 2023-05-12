@@ -13,12 +13,23 @@ class HTMXMessageForm(forms.Form):
         WARNING = 30
         ERROR = 40
 
+    class OtherCategory(models.IntegerChoices):
+        IMPORTANT = 10
+        MEH = 20
+        INUTILE = 25
+
     message = forms.CharField(label="Message", widget=forms.Textarea(attrs={"rows": 3}))
     tag = forms.TypedChoiceField(
         label="Tag",
         choices=MessageTag.choices,
         initial=MessageTag.DEBUG,
         help_text="This is a message tag",
+    )
+    cat = forms.TypedChoiceField(
+        label="Relevance",
+        choices=OtherCategory.choices,
+        initial=OtherCategory.MEH,
+        help_text="This is a category",
     )
 
 

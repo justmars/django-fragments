@@ -2,6 +2,7 @@
 <section hx-target="this" hx-swap="outerHTML">
   <form>
     {% include './down-list.html' with field=htmx_msg_form.tag idx='x' %}
+    {% include './down-list.html' with field=htmx_msg_form.cat idx='y' %}
     {{ htmx_msg_form.message }}
     <button hx-post="{% url 'test_fragments:send_msg' %}" >Submit</button>
   </form>

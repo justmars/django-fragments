@@ -16,9 +16,9 @@
 <div id="{{idx}}" style="margin-top: 10px; position: relative;">
   <button type="button" aria-expanded="false" aria-haspopup="true">
     <span id="{{idx}}-txt">{{field.value.label|default:'None'}}</span>
-  </button>
+  </button>{# how it works: a button open/close a list of menuitems; @hidden list prevents clickable empty space #}
   <ul hidden role="listbox" aria-orientation="vertical" aria-labelledby="{{idx}}-label" tabindex="-1">
-    {% for choice in field.field.choices %}{# lsiten for event: userHasChosen #}
+    {% for choice in field.field.choices %}{# siten for event: userHasChosen #}
       <li role="option" aria-selected="false" _="on userHasChosen setOption(@data-key, @data-value) end"
         data-key="{{choice.0|default:'None'}}" data-value="{{choice.1}}" tabindex="-1">
         <span>{{choice.1}}</span>

@@ -46,7 +46,7 @@ Example attempted architectures for [listbox](https://www.w3.org/WAI/ARIA/apg/pa
 
 1. I'd have preferred to use hyperscript here but it because too unwieldy so settled with some vanilla js and just used hyperscript in the template. Also, this is not yet feature complete. See concepts discussed
 
-`chooseDown.js` handles dropdown events: mouseover, _mouseclick_, _touchstart_, _keyboard_ press of arrow, escape, tab keys. It's responsible for toggling visibility of the `<ul>` and emitting a `userHasChosen` event to be handled separately by the adopting template.
+[`chooseDown.js`](./dropdown.md) handles dropdown events: mouseover, _mouseclick_, _touchstart_, _keyboard_ press of arrow, escape, tab keys. It's responsible for toggling visibility of the `<ul>` and emitting a `userHasChosen` event to be handled separately by the adopting template.
 
 The adopting templates used here feature:
 

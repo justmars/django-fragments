@@ -11,7 +11,7 @@ function verifySelectable(id) {
       return false;
     }
     for (let i = 0; i < els.length; i++) {
-      setId(els[i], id, `${prefix}-${i + 1}`);
+      setId(els[i], id, `${prefix}-${i}`);
     }
     return els;
   }
@@ -52,7 +52,7 @@ function verifySelectable(id) {
  */
 function chooseDown(selectable_group_id) {
   const [button, nodeList, nodeItems] = verifySelectable(selectable_group_id);
-  const arrowKeys = ["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
+  const arrowKeys = ["ArrowDown", "ArrowUp"];
   const eventToEmit = new Event("userHasChosen", {
     bubbles: false,
     cancelable: false,
@@ -107,7 +107,7 @@ function chooseDown(selectable_group_id) {
         inline: "nearest",
       }); // keydown into middle of long item list
 
-    console.log(`focused ${node.id}`);
+    // console.log(`focused ${node.id}`);
   }
 
   // Ready button events which shows / hides / focuses nodes
@@ -115,25 +115,25 @@ function chooseDown(selectable_group_id) {
     "blur",
     (evt) => {
       if (evt.relatedTarget) {
-        console.log(`blurred: ${evt.relatedTarget.id}`);
+        // console.log(`blurred: ${evt.relatedTarget.id}`);
         if (evt.relatedTarget === nodeList) {
-          let node = nodeItems[parseInt(button.dataset.index) - 1];
-          console.log(`matched ${node.id}`);
+          let node = nodeItems[parseInt(button.dataset.index)];
+          // console.log(`matched ${node.id}`);
           node.dispatchEvent(eventToEmit);
         } else {
           nodeOptions.forEach((node) => {
             if (evt.relatedTarget.id === node.id) {
-              console.log(`matched ${node.id}`);
+              // console.log(`matched ${node.id}`);
               node.dispatchEvent(eventToEmit);
             }
           });
         }
       }
-      console.log(`targeted: ${evt.target.id}`);
+      // console.log(`targeted: ${evt.target.id}`);
       if (evt.target.id === button.id) {
         /// debugger;
-        let node = nodeItems[parseInt(button.dataset.index) - 1];
-        console.log(`matched ${node.id}`);
+        let node = nodeItems[parseInt(button.dataset.index)];
+        // console.log(`matched ${node.id}`);
         node.dispatchEvent(eventToEmit);
       }
       hideBox(evt);
@@ -143,7 +143,7 @@ function chooseDown(selectable_group_id) {
   button.addEventListener(
     "click",
     (evt) => {
-      console.log(`click on: ${evt} ${evt.relatedTarget}`);
+      // console.log(`click on: ${evt} ${evt.relatedTarget}`);
       toggleBox(evt);
     },
     false
@@ -153,7 +153,7 @@ function chooseDown(selectable_group_id) {
     toggleBox(evt);
   });
   button.addEventListener("keydown", (evt) => {
-    if (!button.dataset.index) button.dataset.index = 1; // if index not set
+    if (!button.dataset.index) button.dataset.index = 0; // if index not set
     if (button.getAttribute("aria-expanded") === "true") {
       switch (evt.key) {
         case "Tab":
@@ -162,25 +162,23 @@ function chooseDown(selectable_group_id) {
           break;
 
         case "ArrowDown":
-        case "ArrowRight":
           let currDownIndex = parseInt(button.dataset.index);
-          currDownIndex === nodeItems.length
-            ? (button.dataset.index = 1)
+          currDownIndex === nodeItems.length - 1
+            ? (button.dataset.index = 0)
             : (button.dataset.index = currDownIndex + 1);
-          markFocus(nodeItems[parseInt(button.dataset.index) - 1], evt);
+          markFocus(nodeItems[parseInt(button.dataset.index)], evt);
           break;
 
         case "ArrowUp":
-        case "ArrowLeft":
           let currUpIndex = parseInt(button.dataset.index);
-          currUpIndex === 1
-            ? (button.dataset.index = nodeItems.length)
+          currUpIndex === 0
+            ? (button.dataset.index = nodeItems.length - 1)
             : (button.dataset.index = currUpIndex - 1);
-          markFocus(nodeItems[parseInt(button.dataset.index) - 1], evt);
+          markFocus(nodeItems[parseInt(button.dataset.index)], evt);
           break;
 
         case "Enter":
-          const currNode = nodeItems[parseInt(button.dataset.index) - 1];
+          const currNode = nodeItems[parseInt(button.dataset.index)];
           currNode.dispatchEvent(eventToEmit);
           break;
       }
@@ -198,9 +196,9 @@ function chooseDown(selectable_group_id) {
     nodeList.removeAttribute("hidden");
     button.setAttribute("aria-expanded", "true");
     button.setAttribute("aria-hidden", "false");
-    console.log(`show ${nodeList.id} ${evt.type}`);
-    if (!button.dataset.index) button.dataset.index = 1; // if index not set
-    const focusable = nodeItems[parseInt(button.dataset.index) - 1];
+    // console.log(`show ${nodeList.id} ${evt.type}`);
+    if (!button.dataset.index) button.dataset.index = 0; // if index not set
+    const focusable = nodeItems[parseInt(button.dataset.index)];
     if (focusable && focusable.contains(evt.target)) markFocus(focusable);
   }
 
@@ -210,6 +208,6 @@ function chooseDown(selectable_group_id) {
       button.setAttribute("aria-expanded", "false");
       button.setAttribute("aria-hidden", "true");
     }
-    console.log(`hide ${nodeList.id} ${evt.target} ${evt.type}`);
+    // console.log(`hide ${nodeList.id} ${evt.target} ${evt.type}`);
   }
 }

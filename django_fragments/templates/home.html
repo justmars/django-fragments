@@ -1,7 +1,10 @@
 {% extends './_test.html' %}
 {% block content %}
-<hgroup>
-  <h2>Django Fragments</h2>
-  <h3>Demo of its bits and pieces.</h3>
-</hgroup>
+  <header>
+    <hgroup>
+      <h2>Django Fragments</h2>
+      <h3>Demo of its bits and pieces.</h3>
+    </hgroup>
+  </header>
+  {% include './msg_form.html' %}
 {% endblock content %}

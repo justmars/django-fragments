@@ -3,6 +3,25 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
+class HTMXMessageForm(forms.Form):
+    template_name = "test_snippet.html"
+
+    class MessageTag(models.IntegerChoices):
+        DEBUG = 10
+        INFO = 20
+        SUCCESS = 25
+        WARNING = 30
+        ERROR = 40
+
+    message = forms.CharField(label="Message", widget=forms.Textarea(attrs={"rows": 3}))
+    tag = forms.TypedChoiceField(
+        label="Tag",
+        choices=MessageTag.choices,
+        initial=MessageTag.DEBUG,
+        help_text="This is a message tag",
+    )
+
+
 class ContactForm(forms.Form):
     class Category(models.TextChoices):
         YES = "yes", _("Yes, I approve")
@@ -13,7 +32,7 @@ class ContactForm(forms.Form):
 
     template_name = "test_snippet.html"
     category = forms.TypedChoiceField(
-        label="Yes/No",
+        label="Thoughts",
         choices=Category.choices,
         initial=Category.NO,
         help_text="This is a category!",

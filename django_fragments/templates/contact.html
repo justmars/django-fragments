@@ -10,7 +10,7 @@
   {% include './down-list.html' with field=form.category idx='dwnr' %}
   {% url 'test_fragments:contact' as vurl %}
   {% hput form.email kls='test' label_kls='xx' validate=vurl %}
-  {% hput form.message kls='test'  %}
+  {{ form.message }}
   <button type="submit">Submit</button>
 </form>
 {% endblock content %}

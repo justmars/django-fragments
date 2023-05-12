@@ -3,6 +3,11 @@ import sys
 from pathlib import Path
 
 import django
+from django.http.request import HttpRequest
+
+
+def is_htmx(request: HttpRequest) -> bool:
+    return True if request.META.get("HTTP_HX_REQUEST") else False
 
 
 def prep_nb(base_dir_path: Path = Path().cwd()):

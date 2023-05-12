@@ -1,0 +1,9 @@
+{% load fragments %}
+<section hx-target="this" hx-swap="outerHTML">
+  <form>
+    {% include './down-list.html' with field=htmx_msg_form.tag idx='x' %}
+    {{ htmx_msg_form.message }}
+    <button hx-post="{% url 'test_fragments:send_msg' %}" >Submit</button>
+  </form>
+  {% include './msg.html' with messages=messages %}
+</section>

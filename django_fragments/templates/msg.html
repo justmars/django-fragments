@@ -1,0 +1,12 @@
+{% load fragments %}
+<section id="hq" {% if messages %}hx-swap-oob="true"{% endif %} aria-live="assertive">
+  {% for message in messages %}
+    <div id="msg-{{forloop.counter}}" data-level="{{message.level_tag|lower}}"
+        _="on load show me then wait 3s then hide me then remove me">
+      {{message}}
+      <button id="msg-close-{{forloop.counter}}" type="button" _="on click remove #msg-{{forloop.counter}} end">
+        {% icon name='x_mark_mini' css="h-5 w-5 " pre_text="Close" pre_class="sr-only" aria_hidden="true" %}
+      </button>
+    </div>
+  {% endfor %}
+</section>

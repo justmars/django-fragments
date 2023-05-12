@@ -24,10 +24,14 @@ theme:
         name: Switch to light mode
 nav:
   - Overview: index.md
-  - icon: icon.md
-  - hput: hput.md
-  - nava: nava.md
-  - og: og.md
+  - Fragments:
+    - icon: fragments/icon.md
+    - hput: fragments/hput.md
+    - nava: fragments/nava.md
+    - og: fragments/og.md
+  - Architectures:
+    - Dropdown: architectures/dropdown.md
+    - Messages: architectures/msg.md
   - utils: utils.md
 extra:
   homepage: https://mv3.dev

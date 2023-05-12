@@ -316,6 +316,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#select-dropdown-base" class="md-nav__link">
+    Select Dropdown Base
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#utils" class="md-nav__link">
     Utils
   </a>
@@ -473,6 +480,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#select-dropdown-base" class="md-nav__link">
+    Select Dropdown Base
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#utils" class="md-nav__link">
     Utils
   </a>
@@ -532,6 +546,21 @@
 <li><a href="og/#og_desc"><code>{% og_desc %}</code></a> - Formats the meta tags related to the description</li>
 <li><a href="og/#og_img"><code>{% og_img %}</code></a> - Formats the meta tags related to the image</li>
 </ol>
+<h2 id="select-dropdown-base">Select Dropdown Base</h2>
+<p>Example attempted architectures for <a href="https://www.w3.org/WAI/ARIA/apg/patterns/listbox/">listbox</a> and <a href="https://www.w3.org/WAI/ARIA/apg/patterns/menubar/">menubar</a>:</p>
+<div class="language-jinja highlight"><span class="filename">{{idx}} needs button, ul, child li options</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">{%</span> <span class="k">load</span> <span class="nv">static</span> <span class="cp">%}</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="x">&lt;script src=&quot;</span><span class="cp">{%</span> <span class="k">static</span> <span class="s1">&#39;chooseDown.js&#39;</span> <span class="cp">%}</span><span class="x">&quot;&gt;&lt;/script&gt; </span><span class="c">{# (1) #}</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="x">&lt;script&gt;chooseDown(&quot;</span><span class="cp">{{</span><span class="nv">idx</span><span class="cp">}}</span><span class="x">&quot;)&lt;/script&gt;</span>
+</span></code></pre></div>
+<ol>
+<li>I'd have preferred to use hyperscript here but it because too unwieldy so settled with some vanilla js and just used hyperscript in the template. Also, this is not yet feature complete. See concepts discussed</li>
+</ol>
+<p><code>chooseDown.js</code> handles dropdown events: mouseover, <em>mouseclick</em>, <em>touchstart</em>, <em>keyboard</em> press of arrow, escape, tab keys. It's responsible for toggling visibility of the <code>&lt;ul&gt;</code> and emitting a <code>userHasChosen</code> event to be handled separately by the adopting template.</p>
+<p>The adopting templates used here feature:</p>
+<ol>
+<li><code>down-list.html</code> - hides (but still uses) a real <code>&lt;select&gt;</code> field in the DOM, displaying a styleable alternative. Here the <code>&lt;ul&gt;</code> has a role of <code>listbox</code> and each child item the role of <code>option</code>.</li>
+<li><code>_nav.html</code> - <code>&lt;ul&gt;</code> has a role of <code>menu</code> and each child item the role of <code>menuitem</code>.</li>
+</ol>
 <h2 id="utils">Utils</h2>
 <ol>
 <li><a href="utils/#whitespaceless"><code>{% whitespaceless %}</code></a></li>
@@ -545,22 +574,22 @@
 <li>The quotes around the argument (if any) have already been stripped away, so we receive a plain string.</li>
 <li>If the argument was a template variable, our function is passed the current value of the variable, not the variable itself.</li>
 </ol>
-<div class="language-jinja highlight"><span class="filename">Simple tag conventions</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">{%</span> <span class="k">icon</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;x_mark_mini&#39;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  <span class="nv">parent_title</span><span class="o">=</span><span class="s2">&quot;{{variable}}&quot;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="cp">%}</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c">{# won&#39;t work, multiline tags are not supported in Django #}</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="cp">{%</span> <span class="k">icon</span> <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;x_mark_mini&#39;</span> <span class="nv">parent_title</span><span class="o">=</span><span class="s2">&quot;{{variable}}&quot;</span> <span class="cp">%}</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c">{# won&#39;t work, the variable needs to be passed directly #}</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="cp">{%</span> <span class="k">icon</span> <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;x_mark_mini&#39;</span> <span class="nv">parent_title</span><span class="o">=</span><span class="nv">variable</span> <span class="cp">%}</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c">{# works #}</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="cp">{%</span> <span class="k">with</span> <span class="nv">variable</span><span class="o">=</span><span class="s1">&#39;This is a title&#39;</span> <span class="cp">%}</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="x">  </span><span class="cp">{%</span> <span class="k">icon</span> <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;x_mark_mini&#39;</span> <span class="nv">parent_title</span><span class="o">=</span><span class="nv">variable</span> <span class="cp">%}</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="cp">{%</span> <span class="k">endwith</span> <span class="cp">%}</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c">{# works #}</span>
+<div class="language-jinja highlight"><span class="filename">Simple tag conventions</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">{%</span> <span class="k">icon</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;x_mark_mini&#39;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  <span class="nv">parent_title</span><span class="o">=</span><span class="s2">&quot;{{variable}}&quot;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="cp">%}</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c">{# won&#39;t work, multiline tags are not supported in Django #}</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="cp">{%</span> <span class="k">icon</span> <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;x_mark_mini&#39;</span> <span class="nv">parent_title</span><span class="o">=</span><span class="s2">&quot;{{variable}}&quot;</span> <span class="cp">%}</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c">{# won&#39;t work, the variable needs to be passed directly #}</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="cp">{%</span> <span class="k">icon</span> <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;x_mark_mini&#39;</span> <span class="nv">parent_title</span><span class="o">=</span><span class="nv">variable</span> <span class="cp">%}</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c">{# works #}</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="cp">{%</span> <span class="k">with</span> <span class="nv">variable</span><span class="o">=</span><span class="s1">&#39;This is a title&#39;</span> <span class="cp">%}</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="x">  </span><span class="cp">{%</span> <span class="k">icon</span> <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;x_mark_mini&#39;</span> <span class="nv">parent_title</span><span class="o">=</span><span class="nv">variable</span> <span class="cp">%}</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="cp">{%</span> <span class="k">endwith</span> <span class="cp">%}</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c">{# works #}</span>
 </span></code></pre></div>
 
 

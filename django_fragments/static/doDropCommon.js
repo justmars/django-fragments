@@ -31,7 +31,7 @@ class Downable {
     this.button.setAttribute("type", "button");
     this.button.setAttribute("aria-expanded", "false");
     this.button.setAttribute("aria-haspopup", "true");
-    if (!this.button.dataset.index) this.button.dataset.index = 0;
+    if (!this.button.dataset.index) this.button.dataset.index = -1; // prepare for keys
 
     this.nodeItems = nodeItems;
     this.nodeList = nodeList;
@@ -115,13 +115,17 @@ class Downable {
         this.hideBox(evt);
       });
 
-      node.addEventListener("touchstart", (evt) => {
-        evt.preventDefault(); // without this, will auto-mouse click
-        this.focusFunc(node, evt);
-        this.setButtonIndex(this.nodeDigit(node)); // see keydown parity
-        this.chooseFunc();
-        this.hideBox(evt); // unlike mouseover, proceed to select
-      });
+      node.addEventListener(
+        "touchstart",
+        (evt) => {
+          evt.preventDefault(); // without this, will auto-mouse click
+          this.focusFunc(node, evt);
+          this.setButtonIndex(this.nodeDigit(node)); // see keydown parity
+          this.chooseFunc();
+          this.hideBox(evt); // unlike mouseover, proceed to select
+        },
+        { passive: false }
+      );
     });
     return nodes;
   }
@@ -207,9 +211,13 @@ class Downable {
   }
 
   prepareButtonTouch() {
-    this.button.addEventListener("touchstart", (evt) => {
-      evt.preventDefault(); // without this, will auto-mouse click
-      this.toggleBox(evt);
-    });
+    this.button.addEventListener(
+      "touchstart",
+      (evt) => {
+        evt.preventDefault(); // without this, will auto-mouse click
+        this.toggleBox(evt);
+      },
+      { passive: false }
+    );
   }
 }

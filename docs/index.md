@@ -69,22 +69,15 @@ See [framework](./architectures/msg.md) for applying django messages, htmx, and 
 
 ### Select Dropdown Base
 
-Example attempted architectures for [listbox](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/) and [menubar](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/):
+Example attempted architectures for:
 
-```jinja title="{{idx}} needs button, ul, child li options"
-{% load static %}
-<script src="{% static 'chooseDown.js' %}"></script> {# (1) #}
-<script>chooseDown("{{idx}}")</script>
-```
+1. [listbox](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/) via a fake [select](./architectures/dropdown.md#listbox). See sample in `down-list.html` - hides (but still uses) a real `<select>` field in the DOM, displaying a styleable alternative. Here the `<ul>` has a role of `listbox` and each child item the role of `option`.
 
-1. I'd have preferred to use hyperscript here but it because too unwieldy so settled with some vanilla js and just used hyperscript in the template. Also, this is not yet feature complete. See concepts discussed
+2. [menubar](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/) via [nav](./architectures/dropdown.md#menubar). See sample  in `_nav.html` - `<ul>` has a role of `menu` and each child item the role of `menuitem`.
 
-[`chooseDown.js`](./dropdown.md) handles dropdown events: mouseover, _mouseclick_, _touchstart_, _keyboard_ press of arrow, escape, tab keys. It's responsible for toggling visibility of the `<ul>` and emitting a `userHasChosen` event to be handled separately by the adopting template.
+!!! warning "Not yet feature complete."
 
-The adopting templates used here feature:
-
-1. `down-list.html` - hides (but still uses) a real `<select>` field in the DOM, displaying a styleable alternative. Here the `<ul>` has a role of `listbox` and each child item the role of `option`.
-2. `_nav.html` - `<ul>` has a role of `menu` and each child item the role of `menuitem`.
+    Would have preferred hyperscript here but it because too unwieldy so settled with vanilla js. This attempts to replicate the ARIA recommendations but not everything has been adopted (yet).
 
 ## Utils
 

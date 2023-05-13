@@ -26,4 +26,4 @@ Because of a global alerts center in base template described above, a message ca
 
 Outside the general request-response cyclee, the template will likely not include the alerts center, e.g. only parts of the DOM are modified via an htmx request.
 
-In such cases, one can employ `hx-swap-oob` to modify the template on swap of the targeted area (as its usual behavior) but then add the `out-of-bounds` (oob) command ... to reuse identified `hq` DOM element as if to tell it _"new messages have arrived, show them"._
+In such cases, one can employ `hx-swap-oob` to modify the template on swap of the targeted area (as its usual behavior) but then add the `out-of-band` (oob) command ... to reuse identified `hq` DOM element as if to tell it _"new messages have arrived, show them"._

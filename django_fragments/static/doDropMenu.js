@@ -1,11 +1,15 @@
 function doMenu(id) {
   const [container, button, nodeList, nodeItems] = isDownable([
     document.getElementById(id),
-    setIndex(document.querySelector(`#${id} > button`), id, "btn"),
-    setIndex(document.querySelector(`#${id} > ul`), id, "listbox"),
-    setManyIds(document.querySelectorAll(`#${id} > ul > li`), id, "option"),
+    setIndex(document.querySelector(`#${id} button`), id, "btn"),
+    setIndex(document.querySelector(`#${id} ul[role=menu]`), id, "listbox"),
+    setManyIds(
+      document.querySelectorAll(`#${id} ul[role=menu] > li`),
+      id,
+      "option"
+    ),
+    document.querySelectorAll(`#${id} ul[role=menu] > li a`),
   ]);
-  if (nodeList.getAttribute("role") !== "menu") throw "menu role not set";
   let menu = new Downable(
     button,
     nodeList,

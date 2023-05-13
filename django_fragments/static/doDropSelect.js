@@ -10,14 +10,16 @@ function doSelect(id) {
   ] = isDownable([
     document.getElementById(id),
     document.querySelector(`#${id} > select[hidden]`),
-    setIndex(document.querySelector(`#${id} > label`), id, "label"),
-    setIndex(document.querySelector(`#${id} > button`), id, "btn"),
-    setIndex(document.querySelector(`#${id} > button > span`), id, "txt"),
-    setIndex(document.querySelector(`#${id} > ul`), id, "listbox"),
-    setManyIds(document.querySelectorAll(`#${id} > ul > li`), id, "option"),
+    setIndex(document.querySelector(`#${id} label`), id, "label"),
+    setIndex(document.querySelector(`#${id} button`), id, "btn"),
+    setIndex(document.querySelector(`#${id} button > span`), id, "txt"),
+    setIndex(document.querySelector(`#${id} ul[role=listbox]`), id, "listbox"),
+    setManyIds(
+      document.querySelectorAll(`#${id} ul[role=listbox] > li`),
+      id,
+      "option"
+    ),
   ]);
-  if (nodeList.getAttribute("role") !== "listbox") throw "listbox role not set";
-
   let sel = new Downable(
     button,
     nodeList,

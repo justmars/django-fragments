@@ -66,7 +66,7 @@ document.querySelectorAll(`#${id} ul[role=listbox] > li`)
 
 ### menubar
 
-Initializing a `<nav>` menubar with `<ul role='menu'>`
+Initializing a `<button>` menubar with `<ul role='menu'>`
 
 ```js title="Javascript checks"
 document.querySelector(id) // (1)

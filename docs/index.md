@@ -73,7 +73,7 @@ Example attempted architectures for:
 
 1. [listbox](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/) via a fake [select](./architectures/dropdown.md#listbox). See sample in `down-list.html` - hides (but still uses) a real `<select>` field in the DOM, displaying a styleable alternative. Here the `<ul>` has a role of `listbox` and each child item the role of `option`.
 
-2. [menubar](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/) via [nav](./architectures/dropdown.md#menubar). See sample  in `_nav.html` - `<ul>` has a role of `menu` and each child item the role of `menuitem`.
+2. [menubar](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/) via [button toggle](./architectures/dropdown.md#menubar). See sample  in `_nav.html` - `<ul>` has a role of `menu` and each child item the role of `menuitem`.
 
 !!! warning "Not yet feature complete."
 

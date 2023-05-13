@@ -1,5 +1,25 @@
 # Utils
 
+## Theme helpers
+
+```jinja title="doSelect(id-of-container-node)" linenums="1" hl_lines="3 5"
+<!DOCTYPE html>
+<script src="{% static 'doTheme.js' %}"></script>
+<script>themeHTML()</script> {# before <html>: prevent flicker #}
+<html lang="en"> {# class populated / changed  #}
+  <button onclick=toggleTheme()>Theme</button> {# will toggle #}
+  ...
+</html>
+```
+
+### `themeHTML()`
+
+Will populate `<html>` with `class=light` or `class=dark` depending on localStorage and/or media preference.
+
+### `toggleTheme()`
+
+Will toggle the existing `<html class=?>` with `light` or `dark`.
+
 ## Whitespaceless
 
 Remove whitespace from template tag via a Stackover flow answer from one [Will Gordon](https://stackoverflow.com/users/6758654/will-gordon). See [answer](https://stackoverflow.com/a/72942459):

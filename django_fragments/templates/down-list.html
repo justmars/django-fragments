@@ -1,50 +1,15 @@
-{% load static widget_tweaks fragments %}
-{% whitespaceless %}
-<style>
-.select-btn__toggle {
-  border: 1px solid #ccc;
-  background-color: #fff;
-  cursor: pointer;
-  font-size: 16px;
-  color: #333;
-}
-
-.select-btn__list {
-  position: absolute;
-  top: 100%;
-  z-index: 1;
-  list-style: none;
-  border: 1px solid #ccc;
-}
-</style>
-<script type="text/hyperscript">
-  def setOption(key, val)
-    for option in <select#{{field.id_for_label}} > option/>
-      tell option
-        if option@value is key set option@selected to 'true'
-        else remove @selected from option end
-      end
-    end
-    set #{{idx}}-txt's innerText to val
-  end
-</script>
-<div style="position:relative;display:inline-block;">
+{% load static widget_tweaks %}
+<div id="{{idx}}" _="on load js doSelect('{{idx}}') end end">
   {{ field|append_attr:"hidden" }}
-  <label id="{{idx}}-label" for="{{field.id_for_label}}">{{field.label}}</label>
-  <div id="{{idx}}" style="margin-top: 10px; position: relative;">
-    <button type="button" aria-expanded="false" aria-haspopup="true" class="select-btn__toggle">
-      <span id="{{idx}}-txt">{{field.value.label|default:'None'}}</span>
-    </button>{# how it works: a button open/close a list of menuitems; @hidden list prevents clickable empty space #}
-    <ul hidden role="listbox" aria-orientation="vertical" aria-labelledby="{{idx}}-label" tabindex="-1">
-      {% for choice in field.field.choices %}{# siten for event: userHasChosen #}
-        <li role="option" aria-selected="false" _="on userHasChosen setOption(@data-key, @data-value) end"
-          data-key="{{choice.0|default:'None'}}" data-value="{{choice.1}}" tabindex="-1">
-          <span>{{choice.1}}</span>
-        </li>
-      {% endfor  %}
-    </ul>
-  </div>
+  {{ field.label_tag }}
+  <button>
+    <span>{{field.value.label|default:'None'}}</span>
+  </button>
+  <ul hidden role="listbox">
+    {% for choice in field.field.choices %}
+      <li data-key="{{choice.0|default:'None'}}" data-value="{{choice.1}}">
+        <span>{{choice.1}}</span>
+      </li>
+    {% endfor %}
+  </ul>
 </div>
-{% endwhitespaceless %}
-<script src="{% static 'chooseDown.js' %}"></script>
-<script>chooseDown("{{idx}}")</script>{# chooseDown.js: emit userHasChosen event, unhide <ul role="listbox"> #}

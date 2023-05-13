@@ -1,14 +1,14 @@
 {% load static fragments %}
-<nav style="padding-top: 20px;">
-  <aside id="nav-menu-id-top">
-    <button id="nav-menu-id-button" type="button" aria-expanded="false" aria-haspopup="true">Menu</button>
-    <ul hidden id="nav-menu-id-top-options" role="menu" aria-orientation="vertical" aria-labelledby="nav-menu-id-button" tabindex="-1">
-      {% include './item.html' with label='Home' order=1 evt='userHasChosen' reversible='test_fragments:test_page' %}
-      {% include './item.html' with label='About' order=2 evt='userHasChosen' reversible='test_fragments:about' %}
-      {% include './item.html' with label='Contact' order=3 evt='userHasChosen' reversible='test_fragments:contact' %}
-    </ul>
-  </aside>
+<nav style="padding-top: 20px;" id="nav-menu-id" _="on load js doMenu('nav-menu-id') end end">
+  <button>Menu</button>
+  <ul hidden role="menu">
+    <li><a href="{% url 'test_fragments:test_page' %}" {% curr lhs=request.path reversible='test_fragments:test_page' %}
+      >Home</a></li>
+    <li><a href="{% url 'test_fragments:about' %}" {% curr lhs=request.path reversible='test_fragments:about' %}
+      >About</a>
+    </li>
+    <li><a href="{% url 'test_fragments:contact' %}" {% curr lhs=request.path reversible='test_fragments:contact' %}
+      >Contact</a>
+    </li>
   </ul>
 </nav>
-<script src="{% static 'chooseDown.js' %}"></script>
-<script>chooseDown("nav-menu-id-top")</script>

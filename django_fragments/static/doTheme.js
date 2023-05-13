@@ -1,13 +1,26 @@
+const htmlKls = document.documentElement.classList;
 function themeHTML() {
   if (localStorage.getItem("theme") === "dark") {
-    document.documentElement.classList.add("dark");
+    htmlKls.add("dark");
   } else if (localStorage.getItem("theme") === "light") {
-    document.documentElement.classList.add("light");
+    htmlKls.add("light");
   } else if (window.matchMedia("(prefers-color-scheme: dark)")) {
-    document.documentElement.classList.add("dark");
+    htmlKls.add("dark");
     localStorage.setItem("theme", "dark");
   } else {
-    document.documentElement.classList.add("light");
+    htmlKls.add("light");
     localStorage.setItem("theme", "light");
+  }
+}
+
+function toggleTheme() {
+  if (htmlKls.contains("dark")) {
+    htmlKls.remove("dark");
+    htmlKls.add("light");
+    localStorage.setItem("theme", "light");
+  } else if (htmlKls.contains("light")) {
+    htmlKls.remove("light");
+    htmlKls.add("dark");
+    localStorage.setItem("theme", "dark");
   }
 }

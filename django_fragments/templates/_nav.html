@@ -1,14 +1,17 @@
 {% load fragments %}
-<nav style="padding-top: 20px;" id="nav-menu-id" _="on load js doMenu('nav-menu-id') end end">
-  <button>Menu</button>
-  <ul hidden role="menu">
-    <li><a href="{% url 'test_fragments:test_page' %}" {% curr lhs=request.path reversible='test_fragments:test_page' %}
-      >Home</a></li>
-    <li><a href="{% url 'test_fragments:about' %}" {% curr lhs=request.path reversible='test_fragments:about' %}
-      >About</a>
-    </li>
-    <li><a href="{% url 'test_fragments:contact' %}" {% curr lhs=request.path reversible='test_fragments:contact' %}
-      >Contact</a>
-    </li>
-  </ul>
+<nav style="padding-top: 20px;">
+  <button onclick=toggleTheme()>Theme</button>
+  <div id="nav-menu-id" _="on load js doMenu('nav-menu-id') end end">
+    <button>Menu</button>
+    <ul hidden role="menu">
+      <li><a href="{% url 'test_fragments:test_page' %}" {% curr lhs=request.path reversible='test_fragments:test_page' %}
+        >Home</a></li>
+      <li><a href="{% url 'test_fragments:about' %}" {% curr lhs=request.path reversible='test_fragments:about' %}
+        >About</a>
+      </li>
+      <li><a href="{% url 'test_fragments:contact' %}" {% curr lhs=request.path reversible='test_fragments:contact' %}
+        >Contact</a>
+      </li>
+    </ul>
+  </div>
 </nav>

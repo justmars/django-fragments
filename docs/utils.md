@@ -16,6 +16,26 @@ Instead of placing the javascript file in its proper place within the base, I op
 </html>
 ```
 
+So even before the `<html>` loads the following script gets executed:
+
+```html title="base.html"
+<script>
+  // document.documentElement = <html> tag
+  // if local storage set, use it; check user pref; if still unset: light mode
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+  } else if (localStorage.getItem("theme") === "light") {
+    document.documentElement.classList.add("light");
+  } else if (window.matchMedia("(prefers-color-scheme: dark)")) {
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.documentElement.classList.add("light");
+    localStorage.setItem("theme", "light");
+  }
+</script>
+```
+
 ### `themeHTML()`
 
 Will populate `<html>` with `class=light` or `class=dark` depending on localStorage and/or media preference.
@@ -23,6 +43,41 @@ Will populate `<html>` with `class=light` or `class=dark` depending on localStor
 ### `toggleTheme()`
 
 Will toggle the existing `<html class=?>` with `light` or `dark`.
+
+### `{% toggle_icons %}`
+
+=== "_before_: :simple-django: fragment"
+
+    ```jinja title="Usually placed in body" linenums="1" hl_lines="3"
+    <script src="{% static 'doTheme.js' %}"></script>
+    <html>
+      {% toggle_icons icon1_css='test-light' icon2_css='test-dark hello-darkness' btn_kls='btn'  %}
+      ...
+    </html>
+    ```
+
+=== "_after_: html :simple-html5:"
+
+    ```jinja title="Usually placed in body" linenums="1" hl_lines="3 4 5 6 7 8 9 10 11 12"
+    <script src="{% static 'doTheme.js' %}"></script>
+    <html>
+      <button onclick="toggleTheme()" type="button" class="btn" aria-label="Toggle dark mode">
+        <span class="icon1_svg">
+          <span class="sr-only">Light mode</span>
+          <svg class="test-light" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+        <span class="icon2_svg">
+          <span class="sr-only">Dark mode</span>
+          <svg class="test-dark hello-darkness" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </button>
+      ...
+    </html>
+    ```
+
+Implements two sibling [icon](./fragments/icon.md) fragments, surrounded by a `<button>` that, when clicked, calls `toggleTheme()`.
+
+::: django_fragments.templatetags.fragments.toggle_icons
 
 ## htmx
 

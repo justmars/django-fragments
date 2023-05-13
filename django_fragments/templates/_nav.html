@@ -1,6 +1,6 @@
 {% load fragments %}
 <nav style="padding-top: 20px;">
-  <button onclick=toggleTheme()>Theme</button>
+  {% themer icon1_css='override1' icon2_css='override2' btn_kls='override3' %}
   <div id="nav-menu-id" _="on load js doMenu('nav-menu-id') end end">
     <button>Menu</button>
     <ul hidden role="menu">

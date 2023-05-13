@@ -26,6 +26,7 @@ nav:
   - Overview: index.md
   - Fragments:
     - icon: fragments/icon.md
+    - themer: fragments/themer.md
     - hput: fragments/hput.md
     - nava: fragments/nava.md
     - og: fragments/og.md

@@ -11,7 +11,7 @@ from django.utils.html import format_html
 from django.utils.safestring import SafeText, mark_safe
 from markdown import markdown
 
-from .utils import wrap_svg
+from .utils import filter_attrs, wrap_svg
 
 register = template.Library()
 
@@ -93,6 +93,120 @@ def icon(
     html = render_to_string(str(path))
     svg_with_kwargs = wrap_svg(html_markup=html, css=css, **kwargs)
     return mark_safe(str(svg_with_kwargs).strip())
+
+
+@register.simple_tag
+def toggle_icons(
+    btn_kls: str | None = "theme-toggler",
+    aria_label: str | None = "Toggle mode",
+    **kwargs,
+):
+    """Toggle icons. Returns an HTML fragment implementing two `{% icon %}`'s surrounded by a single button which,
+    when clicked, implements the toggleTheme() functionality from `doTheme.js`
+
+    Args:
+        btn_kls (str | None, optional): _description_. Defaults to "theme-toggler".
+        aria_label (str | None, optional): _description_. Defaults to "Toggle mode".
+
+    Returns:
+        SafeString: HTML fragment button
+    """
+    return mark_safe(
+        Template("""
+            {% load fragments %}
+            {% whitespaceless %}
+            <button onclick=toggleTheme() type="button" class="{{ btn_kls }}" aria-label="{{aria_label}}">
+                {{ icon1 }}
+                {{ icon2 }}
+            </button>
+            {% endwhitespaceless %}
+            """)  # noqa: E501
+        .render(
+            context=Context(
+                {
+                    "btn_kls": btn_kls,
+                    "aria_label": aria_label,
+                    "icon1": icon(**filter_attrs(key="icon1", d=kwargs, unprefix=True)),
+                    "icon2": icon(**filter_attrs(key="icon2", d=kwargs, unprefix=True)),
+                },
+            )
+        )
+        .strip()
+    )
+
+
+@register.simple_tag
+def themer(
+    btn_kls: str | None = "theme-toggler",
+    aria_label: str | None = "Toggle dark mode",
+    icon1_name: str | None = "sun",
+    icon1_css: str | None = "sun_css",
+    icon1_parent_class: str | None = "icon1_svg",
+    icon1_pre_text: str | None = "Light mode",
+    icon1_pre_class: str | None = "sr-only",
+    icon2_name: str | None = "moon",
+    icon2_css: str | None = "moon_css",
+    icon2_parent_class: str | None = "icon2_svg",
+    icon2_pre_text: str | None = "Dark mode",
+    icon2_pre_class: str | None = "sr-only",
+    **kwargs,
+):
+    """A wrapper over `toggle_icons()` but specific to a toggle for the common sun and moon
+    pattern.
+
+    Each icon uses the same signature as {% icon %}. To apply a value to the first icon,
+    use the prefix `icon_1`. To apply a value to the second icon, use the prefix `icon_2`. If
+    none are supplied, icon_1 will contain defaults for 'sun', icon_2 will contain defaults
+    for 'moon'.
+
+    So with `tog(icon_1_name='sun', icon_2_Name='moon')`, would implement the equivalent of
+    2 {% icon %} template tags surrounded by a button, e.g.:
+
+    ```jinja
+    <button>
+        {% icon name='sun' %}
+        {% icon name='moon' %}
+    </button>
+    ```
+
+    This implies that the svgs for `sun` and `moon` are present in the designated template folder.
+
+    Args:
+        btn_kls (str | None, optional): Will populate the button's `class` attribute.. Defaults to "theme-toggler".
+        aria_label (str | None, optional): Will populate the button's `aria-label` attribute. Defaults to "Toggle mode".
+        icon1_name (str | None, optional): Will be used to create first {% icon %}. Defaults to "sun".
+        icon1_css (str | None, optional): Will be used to create first {% icon %}. Defaults to "sun_css".
+        icon1_parent_class (str | None, optional): Will be used to create first {% icon %}. Defaults to "icon1_svg".
+        icon1_pre_text (str | None, optional): Will be used to create first {% icon %}. Defaults to "Light mode".
+        icon1_pre_class (str | None, optional): Will be used to create first {% icon %}. Defaults to "sr-only".
+        icon2_name (str | None, optional): Will be used to create second {% icon %}. Defaults to "moon".
+        icon2_css (str | None, optional): Will be used to create second {% icon %}. Defaults to "moon_css".
+        icon2_parent_class (str | None, optional): Will be used to create second {% icon %}. Defaults to "icon2_svg".
+        icon2_pre_text (str | None, optional): Will be used to create second {% icon %}. Defaults to "Dark mode".
+        icon2_pre_class (str | None, optional): Will be used to create second {% icon %}. Defaults to "sr-only".
+
+    Returns:
+        SafeString: HTML fragment button
+    """
+    return toggle_icons(
+        btn_kls=btn_kls,
+        aria_label=aria_label,
+        **(
+            dict(
+                icon1_name=icon1_name,
+                icon1_css=icon1_css,
+                icon1_parent_class=icon1_parent_class,
+                icon1_pre_text=icon1_pre_text,
+                icon1_pre_class=icon1_pre_class,
+                icon2_name=icon2_name,
+                icon2_css=icon2_css,
+                icon2_parent_class=icon2_parent_class,
+                icon2_pre_text=icon2_pre_text,
+                icon2_pre_class=icon2_pre_class,
+            )
+            | kwargs
+        ),
+    )
 
 
 @register.simple_tag

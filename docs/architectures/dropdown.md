@@ -20,7 +20,9 @@ With component functionality separated, can focus on styling a fragment with uti
 
 ### listbox
 
-Faking a `<select>` with `<ul role='listbox'>`
+Faking a `<select>` with `<ul hidden role='listbox'>`
+
+#### listbox components
 
 ```js title="Javascript checks"
 document.querySelector(id) // (1)
@@ -34,14 +36,16 @@ document.querySelector(`#${id} button`)
 document.querySelector(`#${id} button > span`)
 
 // Listbox options (4)
-document.querySelector(`#${id} ul[role=listbox]`)
-document.querySelectorAll(`#${id} ul[role=listbox] > li`)
+document.querySelector(`#${id} ul[hidden][role=listbox]`)
+document.querySelectorAll(`#${id} ul[hidden][role=listbox] > li`)
 ```
 
 1. The container will contain component DOM nodes
 2. Should contain direct child `<select hidden>` and associated `<label>` (need not be a direct child)
 3. Child `<button>` with a direct child `<span>`
-4. Child `<ul role='listbox'>` with direct children `<li>`
+4. Child `<ul hidden role='listbox'>` with direct children `<li>`
+
+#### listbox sample
 
 ```jinja title="doSelect(id-of-container-node)" linenums="1" hl_lines="4"
 {% load widget_tweaks %}
@@ -64,9 +68,20 @@ document.querySelectorAll(`#${id} ul[role=listbox] > li`)
 </div>
 ```
 
+#### listbox focus
+
+When an `<li>` on an element gets :focus:
+
+1. `aria-selected='true'` appears on `<li>`.
+2. `aria-activedescendant` appears on `<ul>` pointing to the created id attribute of `<li>`.
+
+These can then be used as a selector to style the focused element.
+
 ### menubar
 
-Initializing a `<button>` menubar with `<ul role='menu'>`
+Initializing a `<button>` menubar with `<ul hidden role='menu'>`
+
+#### menubar components
 
 ```js title="Javascript checks"
 document.querySelector(id) // (1)
@@ -75,14 +90,16 @@ document.querySelector(id) // (1)
 document.querySelector(`#${id} button`)
 
 // Clickable menu items (3)
-document.querySelector(`#${id} ul[role=menu]`)
-document.querySelectorAll(`#${id} ul[role=menu] > li`)
-document.querySelectorAll(`#${id} ul[role=menu] > li a`)
+document.querySelector(`#${id} ul[hidden][role=menu]`)
+document.querySelectorAll(`#${id} ul[hidden][role=menu] > li`)
+document.querySelectorAll(`#${id} ul[hidden][role=menu] > li a`)
 ```
 
 1. The container will contain component DOM nodes
 2. Child `<button>`
-3. Child `<ul role='menu'>` with direct children `<li>` containing an `<a>` element.
+3. Child `<ul hidden role='menu'>` with direct children `<li>` containing an `<a>` element.
+
+#### menubar sample
 
 ```jinja title="doSelect(id-of-container-node)" linenums="1" hl_lines="5"
 <script src="{% static 'doDropCommon.js' %}"></script>
@@ -101,3 +118,12 @@ document.querySelectorAll(`#${id} ul[role=menu] > li a`)
   ...
 </html>
 ```
+
+#### menubar focus
+
+When an `<li>` on an element gets :focus:
+
+1. `data-ok='true'` appears on `<li>`.
+2. `aria-activedescendant` appears on `<ul>` pointing to the created id attribute of `<li>`.
+
+These can then be used as a selector to style the focused element.

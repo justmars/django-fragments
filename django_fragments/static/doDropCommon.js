@@ -50,35 +50,35 @@ class Downable {
 
   getButtonIndex() {
     let val = parseInt(this.button.dataset.index);
-    console.log(`Index of node: ${val}`);
+    // console.log(`Index of node: ${val}`);
     return val;
   }
 
   // get candidate
   getNode() {
     let node = this.nodeItems[this.getButtonIndex()];
-    console.log(`Fetching ${node}`);
+    // console.log(`Fetching ${node}`);
     return node;
   }
 
   showBox(evt) {
-    console.log(`Box shown`);
+    // console.log(`Box shown`);
     this.nodeList.removeAttribute("hidden");
     this.button.setAttribute("aria-expanded", "true");
     this.button.setAttribute("aria-hidden", "false");
-    console.log(`show ${this.nodeList.id} ${evt.type}`);
+    // console.log(`show ${this.nodeList.id} ${evt.type}`);
     const focusable = this.getNode();
     if (focusable && focusable.contains(evt.target)) focusNode(focusable);
   }
 
   hideBox(evt) {
     if (this.button.getAttribute("aria-expanded") === "true") {
-      console.log(`Box hidden`);
+      // console.log(`Box hidden`);
       this.nodeList.setAttribute("hidden", "true");
       this.button.setAttribute("aria-expanded", "false");
       this.button.setAttribute("aria-hidden", "true");
     }
-    console.log(`hide ${this.nodeList.id} ${evt.target} ${evt.type}`);
+    // console.log(`hide ${this.nodeList.id} ${evt.target} ${evt.type}`);
   }
 
   toggleBox(evt) {
@@ -181,7 +181,7 @@ class Downable {
       "blur",
       (evt) => {
         if (evt.relatedTarget) {
-          console.log(`blurred: ${evt.relatedTarget.id}`);
+          // console.log(`blurred: ${evt.relatedTarget.id}`);
           if (evt.relatedTarget === this.nodeList) {
             this.chooseFunc();
             this.hideBox(evt);
@@ -203,7 +203,7 @@ class Downable {
     this.button.addEventListener(
       "click",
       (evt) => {
-        console.log(`click on: ${evt} ${evt.relatedTarget}`);
+        // console.log(`click on: ${evt} ${evt.relatedTarget}`);
         this.toggleBox(evt);
       },
       false

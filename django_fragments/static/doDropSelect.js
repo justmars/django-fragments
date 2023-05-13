@@ -13,9 +13,13 @@ function doSelect(id) {
     setIndex(document.querySelector(`#${id} label`), id, "label"),
     setIndex(document.querySelector(`#${id} button`), id, "btn"),
     setIndex(document.querySelector(`#${id} button > span`), id, "txt"),
-    setIndex(document.querySelector(`#${id} ul[role=listbox]`), id, "listbox"),
+    setIndex(
+      document.querySelector(`#${id} ul[hidden][role=listbox]`),
+      id,
+      "listbox"
+    ),
     setManyIds(
-      document.querySelectorAll(`#${id} ul[role=listbox] > li`),
+      document.querySelectorAll(`#${id} ul[hidden][role=listbox] > li`),
       id,
       "option"
     ),

@@ -4,11 +4,11 @@ function doMenu(id) {
     setIndex(document.querySelector(`#${id} button`), id, "btn"),
     setIndex(document.querySelector(`#${id} ul[role=menu]`), id, "listbox"),
     setManyIds(
-      document.querySelectorAll(`#${id} ul[role=menu] > li`),
+      document.querySelectorAll(`#${id} ul[hidden][role=menu] > li`),
       id,
       "option"
     ),
-    document.querySelectorAll(`#${id} ul[role=menu] > li a`),
+    document.querySelectorAll(`#${id} ul[hidden][role=menu] > li a`),
   ]);
   let menu = new Downable(
     button,

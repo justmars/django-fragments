@@ -2,10 +2,22 @@ import re
 
 from django import template
 from django.forms import BoundField
+from django.template import Context, Template
 from django.utils.functional import keep_lazy_text
 from django.utils.safestring import SafeText, mark_safe
 
 from .fragments import register
+
+
+@register.simple_tag(takes_context=True)
+def htmx_csrf(context) -> SafeText:
+    """Just a tiny fragment to signify htmx-compatible requests
+    that will include the csrf_token."""
+    return mark_safe(
+        Template("""hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'""").render(
+            context=Context(context)
+        )
+    )
 
 
 @register.simple_tag

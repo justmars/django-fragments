@@ -1,6 +1,10 @@
 # Utils
 
+These are an assortment of tools in the same vein of [django-extensions](https://github.com/django-extensions/django-extensions):
+
 ## Theme helpers
+
+Instead of placing the javascript file in its proper place within the base, I opt to place it at the top before the html tag even loads. This allows me to insert a `themeHTML()` command to get the user preference for theme and place it in localStorage, or use an existing theme, if localStorage is already populated.
 
 ```jinja title="doSelect(id-of-container-node)" linenums="1" hl_lines="3 5"
 <!DOCTYPE html>
@@ -19,6 +23,50 @@ Will populate `<html>` with `class=light` or `class=dark` depending on localStor
 ### `toggleTheme()`
 
 Will toggle the existing `<html class=?>` with `light` or `dark`.
+
+## htmx
+
+These are just convenience fragments for oft-repeated idioms of :simple-django: + [htmx](https://htmx.org). For a more comprehensive library, see [django-htmx](https://github.com/adamchainz/django-htmx).
+
+### `{% htmx_csrf %}`
+
+=== "_before_: :simple-django: fragment"
+
+    ```jinja title="Usually placed in body" linenums="1" hl_lines="5"
+      <html>
+        <head>
+          ...
+        </head>
+        <body {% htmx_csrf %} class="container">
+      </html>
+    ```
+
+=== "_after_: html :simple-html5:"
+
+    ```jinja title="Usually placed in body" linenums="1" hl_lines="5"
+      <html>
+        <head>
+          ...
+        </head>
+        <body hx-headers='{"X-CSRFToken": "the-token-itself"}' class="container">
+
+      </html>
+    ```
+
+::: django_fragments.templatetags.helpers.htmx_csrf
+
+### `is_htmx`
+
+Checks if a request contains the `HTTP_HX_REQUEST` Header:
+
+```py title="Usable in a view"
+@require_POST
+def send_msg(request: HttpRequest):
+    if is_htmx(request):
+        ...
+```
+
+::: django_fragments.utils.is_htmx
 
 ## Whitespaceless
 

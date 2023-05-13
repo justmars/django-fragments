@@ -1,4 +1,4 @@
-{% load static %}
+{% load static fragments %}
 <!DOCTYPE html>
 <script src="{% static 'doTheme.js' %}"></script>
 <script src="{% static 'doDropCommon.js' %}"></script>
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://unpkg.com/missing.css@1.0.9/dist/missing.min.css">
     <title>django-fragments sample</title>
   </head>
-  <body class="container" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <body {% htmx_csrf %} class="container">
     {% include './_nav.html' %}
     <main>
       {% block content %}

@@ -7,6 +7,15 @@ from django.http.request import HttpRequest
 
 
 def is_htmx(request: HttpRequest) -> bool:
+    """Determines whether or not the request should be handled differently
+    because of the presence of the `HTTP_HX_REQUEST` header.
+
+    Args:
+        request (HttpRequest): The Django request object received from the view
+
+    Returns:
+        bool: Whether or not `HTTP_HX_REQUEST` exists.
+    """
     return True if request.META.get("HTTP_HX_REQUEST") else False
 
 

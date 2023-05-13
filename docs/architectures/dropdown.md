@@ -48,11 +48,10 @@ document.querySelectorAll(`#${id} ul[hidden][role=listbox] > li`)
 #### listbox sample
 
 ```jinja title="doSelect(id-of-container-node)" linenums="1" hl_lines="4"
-{% load widget_tweaks %}
 <script src="{% static 'doDropCommon.js' %}"></script>
 <script src="{% static 'doDropSelect.js' %}"></script>
 <div id="{{idx}}" _="on load js doSelect('{{idx}}') end end"> {# required container id with components #}
-  {{ field|append_attr:"hidden" }} {# select #}
+  {{ field }} {# can add django_widget_tweaks to supply 'hidden' or modify from Form widget attrs #}
   {{ field.label_tag }} {# label #}
   <button>
     <span>{{field.value.label|default:'None'}}</span>

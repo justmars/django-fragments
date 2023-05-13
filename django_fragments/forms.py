@@ -24,12 +24,14 @@ class HTMXMessageForm(forms.Form):
         choices=MessageTag.choices,
         initial=MessageTag.DEBUG,
         help_text="This is a message tag",
+        widget=forms.Select(attrs={"hidden": True}),
     )
     cat = forms.TypedChoiceField(
         label="Relevance",
         choices=OtherCategory.choices,
         initial=OtherCategory.MEH,
         help_text="This is a category",
+        widget=forms.Select(attrs={"hidden": True}),
     )
 
 
@@ -47,6 +49,7 @@ class ContactForm(forms.Form):
         choices=Category.choices,
         initial=Category.NO,
         help_text="This is a category!",
+        widget=forms.Select(attrs={"hidden": True}),
     )
     email = forms.EmailField(label="Email", help_text="Testable form")
     message = forms.CharField(label="Message", widget=forms.Textarea(attrs={"rows": 3}))

@@ -1,6 +1,5 @@
-{% load widget_tweaks %}
 <div id="{{idx}}" _="on load js doSelect('{{idx}}') end end">
-  {{ field|append_attr:"hidden" }}
+  {{ field }}
   {{ field.label_tag }}
   <button>
     <span>{{field.value.label|default:'None'}}</span>

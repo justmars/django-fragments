@@ -38,7 +38,8 @@ Use of [django_widget_tweaks](https://github.com/jazzband/django-widget-tweaks) 
 
 === "_before_: :simple-django: fragment"
 
-    ```jinja title="Invocation via Django Template Language" linenums="1" hl_lines="3"
+    ```jinja title="Invocation via Django Template Language" linenums="1" hl_lines="1 4"
+    {% load widget_tweaks %}
     <form method="post" action="{% url 'account_signup' %}">
       {% csrf_token %}
       {% hput field=form.email|attr:"placeholder=Hello World!" %}

@@ -2,7 +2,7 @@
 
 ## Concept
 
-Uses `django.utils.format_html()` to output an `<a>` element. When the `request` object is included in the template tag, it will call `curr()` to vet whether the element should include `aria-current=page`. This makes it fit for desktop/mobile navbar link.
+Uses [`django.utils.format_html()`](https://docs.djangoproject.com/en/dev/ref/utils/) to output an `<a>` element. When the `request` object is included in the template tag, it will call [`curr()`](#curr) to vet whether the element should include `aria-current=page`. This makes it fit for desktop/mobile navbar link.
 
 === "_before_: :simple-django: fragment"
 

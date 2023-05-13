@@ -1,27 +1,10 @@
 # django-fragments Docs
 
-Reusable partial templates, originally meant for a Django [boilerplate](https://start-django.fly.dev), refactored out into an independent library.
+!!! danger "In active development"
 
-## Installation
+    Expect breaking changes.
 
-After installation, e.g. `pip install django-fragments`
-
-```py
-INSTALLED_APPS = [
-    "django_fragments", # add this
-]
-...
-FRAGMENTS = {
-    "icons_prefix": "heroicons", # prefix to use for icons
-    "icons_path": BASE_DIR / "templates" / "xxx" # type: Path, location where svg icons will be stored
-}
-```
-
-Invoke via `{% load fragments %}`
-
-## Fragments
-
-??? tip "Notes in using template tags"
+??? tip "Invoke via `{% load fragments %}` but note conventions"
 
     Some notes from [:simple-django:](https://docs.djangoproject.com/en/dev/howto/custom-template-tags/#django.template.Library.simple_tag):
 
@@ -48,39 +31,35 @@ Invoke via `{% load fragments %}`
     {# works #}
     ```
 
-### Shortcuts
+## Shortcuts
 
-1. [`{% icon %}`](./fragments/icon.md) - idiomatic `<svg>` combiner with neighboring / parent tags
-2. [`{% hput %}`](./fragments/hput.md) - encapsulated, [tweakable](https://github.com/jazzband/django-widget-tweaks) `<input>` with option for inline validation.
-3. [`{% nava %}`](./fragments/nava.md#nava) - Uses `format_html` to output an `<a>` element fit for desktop/mobile navbar links.
-4. [`{% curr %}`](./fragments/nava.md#curr) - Outputs string `aria-current=page` if url is current.
+fragment | note
+--:|:--
+[`{% themer %}`](./fragments/themer.md) | overrideable theme switcher, affecting `<html class=?>`
+[`{% icon %}`](./fragments/icon.md) | idiomatic `<svg>` combiner with neighboring / parent tags
+[`{% hput %}`](./fragments/hput.md) | optional inline validated `<input>`, is [widget-tweakable](https://github.com/jazzband/django-widget-tweaks)
+[`{% nava %}`](./fragments/nava.md#nava) | Uses [`format_html`](https://docs.djangoproject.com/en/dev/ref/utils/#django.utils.html.format_html) to output an `<a>` element fit for desktop/mobile navbar links
+[`{% curr %}`](./fragments/nava.md#curr) | Outputs string `aria-current=page` if url is current
 
-### Open Graph
+## Open Graph
 
-1. [`{% og_title %}`](./fragments/og.md#og_title) - Formats the meta tags related to the title
-2. [`{% og_desc %}`](./fragments/og.md#og_desc) - Formats the meta tags related to the description
-3. [`{% og_img %}`](./fragments/og.md#og_img) - Formats the meta tags related to the image
+fragment | note
+--:|:--
+[`{% og_title %}`](./fragments/og.md#og_title) | Adds to `<title>` and related open graph tags
+[`{% og_desc %}`](./fragments/og.md#og_desc) | Adds to `<meta name=description>` and related open graph tags
+[`{% og_img %}`](./fragments/og.md#og_img) | Adds image-related open graph tags
 
-## Architectures
+## Helpers
 
-### Message Alerts Template
+fragment | note
+--:|:--
+[`{% whitespaceless %}`](./utils.md#whitespaceless) | Remove _"space between tags and text"_, outside [{% spaceless %}](https://docs.djangoproject.com/en/dev/ref/templates/builtins/#spaceless) scope.
+[`{% htmx_csrf %}`](./utils.md#htmx_csrf) | Adds idiomatic `hx-header=csrf-token-variable`
 
-See [framework](./architectures/msg.md) for applying django messages, htmx, and hyperscript.
+These are partial templates, originally meant for a Django [boilerplate](https://start-django.fly.dev), refactored out as independent library.
 
-### Select Dropdown Base
+## Extra Utils
 
-Example attempted architectures for:
-
-1. [listbox](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/) via a fake [select](./architectures/dropdown.md#listbox). See sample in `down-list.html` - hides (but still uses) a real `<select>` field in the DOM, displaying a styleable alternative. Here the `<ul>` has a role of `listbox` and each child item the role of `option`.
-
-2. [menubar](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/) via [button toggle](./architectures/dropdown.md#menubar). See sample  in `_nav.html` - `<ul>` has a role of `menu` and each child item the role of `menuitem`.
-
-!!! warning "Not yet feature complete."
-
-    Would have preferred hyperscript here but it because too unwieldy so settled with vanilla js. This attempts to replicate the ARIA recommendations but not everything has been adopted (yet).
-
-## Utils
-
-1. [`{% whitespaceless %}`](./utils.md#whitespaceless)
+1. [is_htmx](./utils.md#is_htmx)
 2. [Filtering of Attributes](./utils.md#filter-attributes)
 3. [Wrap Icon Processing](./utils.md#wrap-icon)

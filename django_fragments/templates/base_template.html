@@ -5,13 +5,22 @@
 <script src="{% static 'doDropSelect.js' %}"></script>
 <script src="{% static 'doDropMenu.js' %}"></script>
 <script>themeHTML()</script>
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
     <link rel="stylesheet" href="https://unpkg.com/missing.css@1.0.9/dist/missing.min.css">
-    <title>django-fragments sample</title>
+    {% og_title 'django fragments sample' %}
+    {% og_desc 'demo of django-fragments' %}
+    {% og_img url="https://gravatar.com/mgv3" alt="Sample desc of image" %}
+    <style>
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    </style>
   </head>
   <body {% htmx_csrf %} class="container">
     {% include './_nav.html' %}

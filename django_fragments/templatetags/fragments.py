@@ -87,7 +87,7 @@ def icon(
         **kwargs (dict): The following kwargs: `pre_`, `post_`, and `parent_` args are respected by `start_html_tag_helpers`
 
     Returns:
-        SafeString: Small HTML fragment visually representing an svg icon but which may contain related tags.
+        SafeText: Small HTML fragment visually representing an svg icon but which may contain related tags.
     """  # noqa: E501
     path = folder / f"{prefix}_{name}.html"
     html = render_to_string(str(path))
@@ -100,7 +100,7 @@ def toggle_icons(
     btn_kls: str | None = "theme-toggler",
     aria_label: str | None = "Toggle mode",
     **kwargs,
-):
+) -> SafeText:
     """Toggle icons. Returns an HTML fragment implementing two `{% icon %}`'s surrounded by a single button which,
     when clicked, implements the toggleTheme() functionality from `doTheme.js`
 
@@ -109,7 +109,7 @@ def toggle_icons(
         aria_label (str | None, optional): _description_. Defaults to "Toggle mode".
 
     Returns:
-        SafeString: HTML fragment button
+        SafeText: HTML fragment button
     """
     return mark_safe(
         Template("""
@@ -150,7 +150,7 @@ def themer(
     icon2_pre_text: str | None = "Dark mode",
     icon2_pre_class: str | None = "sr-only",
     **kwargs,
-):
+) -> SafeText:
     """A wrapper over `toggle_icons()` but specific to a toggle for the common sun and moon
     pattern.
 
@@ -186,7 +186,7 @@ def themer(
         icon2_pre_class (str | None, optional): Will be used to create second {% icon %}. Defaults to "sr-only".
 
     Returns:
-        SafeString: HTML fragment button
+        SafeText: HTML fragment button
     """
     return toggle_icons(
         btn_kls=btn_kls,

@@ -1,10 +1,13 @@
-# `{% theme_btn %}`
+# `{% themer %}`
 
 ## Concept
 
-`theme_btn` is an _overrideable_ theme switcher, i.e. a button surrounding two [icons](./icon.md). Without any
-arguments, it will use some defaults. It assumes that the requirements of the two icons have been previously
-met. This is just a wrapper over [`{% toggle_icons %}`](../utils.md#toggle_icons) but one containing the generic defaults. The button implements [`toggleTheme()`](../utils.md#toggletheme).
+`{% themer %}` is an _overrideable_ theme switcher, i.e. a `<button>` surrounding two [icons](./icon.md).
+
+- Requires [file-based requirements](./icon.md#svg-placement) of two icons to be present.
+- Thin wrapper over [`{% toggle_icons %}`](../utils.md#toggle_icons) but one containing the generic defaults.
+- The `<button>` implements [`toggleTheme()`](../utils.md#toggletheme).
+- When set in the template without arguments, it will use defaults.
 
 === "_before_: :simple-django: fragment"
 

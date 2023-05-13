@@ -1,26 +1,35 @@
-const htmlKls = document.documentElement.classList;
+/** Refers to `<html class="">` */
+const baseKlass = document.documentElement.classList;
+
+function setTheme(val) {
+  baseKlass.add(val);
+  localStorage.setItem("theme", val);
+}
+
+/** Check if localStorage populated then adjust <html> accordingly; if not available,
+ *  determine user preference, finally default to light mode.
+ */
 function themeHTML() {
   if (localStorage.getItem("theme") === "dark") {
-    htmlKls.add("dark");
+    baseKlass.add("dark");
   } else if (localStorage.getItem("theme") === "light") {
-    htmlKls.add("light");
+    baseKlass.add("light");
   } else if (window.matchMedia("(prefers-color-scheme: dark)")) {
-    htmlKls.add("dark");
-    localStorage.setItem("theme", "dark");
+    setTheme("dark");
   } else {
-    htmlKls.add("light");
-    localStorage.setItem("theme", "light");
+    setTheme("light");
   }
 }
 
+/** Based on `baseKlass`, toggle its opposite, e.g. if 'light', make 'dark' then
+ * storage the result in LocalStorage under `theme` variable.
+ */
 function toggleTheme() {
-  if (htmlKls.contains("dark")) {
-    htmlKls.remove("dark");
-    htmlKls.add("light");
-    localStorage.setItem("theme", "light");
-  } else if (htmlKls.contains("light")) {
-    htmlKls.remove("light");
-    htmlKls.add("dark");
-    localStorage.setItem("theme", "dark");
+  if (baseKlass.contains("dark")) {
+    baseKlass.remove("dark");
+    setTheme("light");
+  } else if (baseKlass.contains("light")) {
+    baseKlass.remove("light");
+    setTheme("dark");
   }
 }

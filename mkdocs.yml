@@ -24,6 +24,7 @@ theme:
         name: Switch to light mode
 nav:
   - Overview: index.md
+  - Install: install.md
   - Fragments:
     - icon: fragments/icon.md
     - themer: fragments/themer.md
@@ -31,6 +32,7 @@ nav:
     - nava: fragments/nava.md
     - og: fragments/og.md
   - Architectures:
+    - Rationale: architectures/rationale.md
     - Dropdown: architectures/dropdown.md
     - Messages: architectures/msg.md
   - utils: utils.md

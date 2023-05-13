@@ -6,17 +6,7 @@
 
     A [listbox dropdown](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/) typically appears in a `<form>`.
 
-    Since both contain similar events, _e.g. keyboard navigation, touch events, mouse clicks/hover_, I've tried my hand at some vanilla js to implement the common events without css being applied. As much as I'd like to have used a [headlessui](https://github.com/tailwindlabs/headlessui/discussions/984?sort=top) library, there doesn't seem to be one for non-js-frameworks so ended up creating a makeshift solution.
-
-## Architecture-Driven
-
-Instead of using a template fragment to compose the component, this takes another approach to locality. The `aria-*` based attributes and javascript event listeners for `hover`, `click`, `keydown` are added automatically provided:
-
-1. The javascript files are loaded.
-2. The DOM nodes follow an architecture pattern.
-3. An invocation is made to consume a function within the architecture.
-
-With component functionality separated, can focus on styling a fragment with utility classes.
+    Since both contain similar events, _e.g. keyboard navigation, touch events, mouse clicks/hover_, I've tried my hand at some vanilla js to implement the common events without css being applied.
 
 ### listbox
 
@@ -69,10 +59,11 @@ document.querySelectorAll(`#${id} ul[hidden][role=listbox] > li`)
 
 #### listbox focus
 
-When an `<li>` on an element gets :focus:
+When an `<li>` on the listbox receives `:focus`:
 
 1. `aria-selected='true'` appears on `<li>`.
-2. `aria-activedescendant` appears on `<ul>` pointing to the created id attribute of `<li>`.
+2. `aria-selected='false'` is set on the other `<li>`
+3. `aria-activedescendant` appears on `<ul>` pointing to the auto-generated id of `<li>`.
 
 These can then be used as a selector to style the focused element.
 
@@ -120,9 +111,10 @@ document.querySelectorAll(`#${id} ul[hidden][role=menu] > li a`)
 
 #### menubar focus
 
-When an `<li>` on an element gets :focus:
+When an `<li>` on the menubar receives `:focus`:
 
 1. `data-ok='true'` appears on `<li>`.
-2. `aria-activedescendant` appears on `<ul>` pointing to the created id attribute of `<li>`.
+2. `data-ok='false'` is set on the other `<li>`
+3. `aria-activedescendant` appears on `<ul>` pointing to the auto-generated id of `<li>`.
 
 These can then be used as a selector to style the focused element.

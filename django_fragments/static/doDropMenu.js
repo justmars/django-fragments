@@ -1,8 +1,8 @@
 function doMenu(id) {
-  const [container, button, nodeList, nodeItems] = isDownable([
+  const [container, button, nodeList, nodeItems] = isExists([
     document.getElementById(id),
-    setIndex(document.querySelector(`#${id} button`), id, "btn"),
-    setIndex(document.querySelector(`#${id} ul[role=menu]`), id, "listbox"),
+    addSuffixId(document.querySelector(`#${id} button`), id, "btn"),
+    addSuffixId(document.querySelector(`#${id} ul[role=menu]`), id, "listbox"),
     setManyIds(
       document.querySelectorAll(`#${id} ul[hidden][role=menu] > li`),
       id,

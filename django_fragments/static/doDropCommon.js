@@ -1,4 +1,11 @@
-function setIndex(el, id, suffix) {
+/**
+ * Combines base `id` with a `suffix` and store it as the id attribute of the element `el`
+ * @param {*} el
+ * @param {*} id
+ * @param {*} suffix
+ * @returns a DOM node
+ */
+function addSuffixId(el, id, suffix) {
   if (!el) {
     return false;
   }
@@ -6,17 +13,29 @@ function setIndex(el, id, suffix) {
   return el;
 }
 
+/**
+ * Combines base `id` with a `prefix` and store it as the id attribute of all elements `els`
+ * @param {*} els
+ * @param {*} id
+ * @param {*} prefix
+ * @returns
+ */
 function setManyIds(els, id, prefix) {
   if (!els) {
     return false;
   }
   for (let i = 0; i < els.length; i++) {
-    setIndex(els[i], id, `${prefix}-${i}`);
+    addSuffixId(els[i], id, `${prefix}-${i}`);
   }
   return els;
 }
 
-function isDownable(items) {
+/**
+ * Return the DOM node `items` if all are present, otherwise throw an error.
+ * @param {*} items
+ * @returns Array of DOM nodes.
+ */
+function isExists(items) {
   for (let item of items) {
     if (!item) {
       throw "Missing element.";
@@ -40,12 +59,12 @@ class Downable {
 
     this.focusFunc = focusFunc;
     this.chooseFunc = chooseFunc;
-    this.nodeOptions = this.prepareOptions(nodeItems);
+    this.nodeOptions = this.prepItems(nodeItems);
 
-    this.prepareButtonKeydowns();
-    this.prepareButtonBlur();
-    this.prepareButtonClick();
-    this.prepareButtonTouch();
+    this.prepButtonKeydowns();
+    this.prepButtonBlur();
+    this.prepButtonClick();
+    this.prepButtonTouch();
   }
 
   getButtonIndex() {
@@ -81,6 +100,7 @@ class Downable {
     // console.log(`hide ${this.nodeList.id} ${evt.target} ${evt.type}`);
   }
 
+  // determine whether button is expanded and then toggle
   toggleBox(evt) {
     evt.preventDefault();
     this.button.getAttribute("aria-expanded") !== "true"
@@ -88,16 +108,18 @@ class Downable {
       : this.hideBox(evt);
   }
 
+  // get integer from node id attribute
   nodeDigit(node) {
     return node.id.match(/\d+$/);
   }
 
+  // set node id attribute
   setButtonIndex(val) {
     this.button.dataset.index = val;
   }
 
   // make list options focusable via events
-  prepareOptions(nodeItems) {
+  prepItems(nodeItems) {
     let nodes = Array.prototype.slice.call(nodeItems);
     nodes.forEach((node) => {
       node.setAttribute("role", "option");
@@ -130,13 +152,14 @@ class Downable {
     return nodes;
   }
 
-  prepareButtonKeydowns() {
+  //
+  prepButtonKeydowns() {
     this.button.addEventListener("keydown", (evt) => {
       if (this.button.getAttribute("aria-expanded") === "true") {
         switch (evt.key) {
           case "Tab":
           case "Escape":
-            hideBox(evt);
+            this.hideBox(evt);
             break;
 
           case "ArrowDown":
@@ -176,7 +199,7 @@ class Downable {
   }
 
   // Ready button events which shows / hides / focuses nodes
-  prepareButtonBlur() {
+  prepButtonBlur() {
     this.button.addEventListener(
       "blur",
       (evt) => {
@@ -199,7 +222,7 @@ class Downable {
     );
   }
 
-  prepareButtonClick() {
+  prepButtonClick() {
     this.button.addEventListener(
       "click",
       (evt) => {
@@ -210,7 +233,7 @@ class Downable {
     );
   }
 
-  prepareButtonTouch() {
+  prepButtonTouch() {
     this.button.addEventListener(
       "touchstart",
       (evt) => {

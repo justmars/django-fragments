@@ -7,13 +7,13 @@ function doSelect(id) {
     buttonSpan,
     nodeList,
     nodeItems,
-  ] = isDownable([
+  ] = isExists([
     document.getElementById(id),
     document.querySelector(`#${id} > select[hidden]`),
-    setIndex(document.querySelector(`#${id} label`), id, "label"),
-    setIndex(document.querySelector(`#${id} button`), id, "btn"),
-    setIndex(document.querySelector(`#${id} button > span`), id, "txt"),
-    setIndex(
+    addSuffixId(document.querySelector(`#${id} label`), id, "label"),
+    addSuffixId(document.querySelector(`#${id} button`), id, "btn"),
+    addSuffixId(document.querySelector(`#${id} button > span`), id, "txt"),
+    addSuffixId(
       document.querySelector(`#${id} ul[hidden][role=listbox]`),
       id,
       "listbox"

@@ -36,7 +36,7 @@ def hx_enable_inline_validation(bound: BoundField, url: str) -> str:
     the partial template response will `hx-swap` an `hx-target`. In other words, the
     old field is replaced by the same field... but now as a result of `form.is_valid()`.
 
-    The response,if it contains errors, will include an error list for the field.
+    The response, if it contains errors, will include an error list for the field.
 
     Instead of rendering the entire partial response, the use of `hx-select` limits the
     replacement to a segment of the partial response.

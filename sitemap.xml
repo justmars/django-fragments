@@ -2,57 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://mv3.dev/</loc>
-         <lastmod>2023-05-13</lastmod>
+         <lastmod>2023-05-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mv3.dev/install/</loc>
-         <lastmod>2023-05-13</lastmod>
+         <lastmod>2023-05-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://mv3.dev/notes/</loc>
+         <lastmod>2023-05-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mv3.dev/utils/</loc>
-         <lastmod>2023-05-13</lastmod>
+         <lastmod>2023-05-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://mv3.dev/architectures/dropdown/</loc>
-         <lastmod>2023-05-13</lastmod>
+         <loc>https://mv3.dev/architectures/alert/</loc>
+         <lastmod>2023-05-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://mv3.dev/architectures/msg/</loc>
-         <lastmod>2023-05-13</lastmod>
+         <loc>https://mv3.dev/architectures/listbox/</loc>
+         <lastmod>2023-05-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://mv3.dev/architectures/menubar/</loc>
+         <lastmod>2023-05-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mv3.dev/architectures/rationale/</loc>
-         <lastmod>2023-05-13</lastmod>
+         <lastmod>2023-05-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mv3.dev/fragments/hput/</loc>
-         <lastmod>2023-05-13</lastmod>
+         <lastmod>2023-05-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mv3.dev/fragments/icon/</loc>
-         <lastmod>2023-05-13</lastmod>
+         <lastmod>2023-05-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mv3.dev/fragments/nava/</loc>
-         <lastmod>2023-05-13</lastmod>
+         <lastmod>2023-05-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mv3.dev/fragments/og/</loc>
-         <lastmod>2023-05-13</lastmod>
+         <lastmod>2023-05-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mv3.dev/fragments/themer/</loc>
-         <lastmod>2023-05-13</lastmod>
+         <lastmod>2023-05-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

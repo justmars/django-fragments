@@ -476,8 +476,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architectures/dropdown/" class="md-nav__link">
-        Dropdown
+      <a href="../../architectures/menubar/" class="md-nav__link">
+        Menubar
       </a>
     </li>
   
@@ -490,8 +490,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architectures/msg/" class="md-nav__link">
-        Messages
+      <a href="../../architectures/listbox/" class="md-nav__link">
+        Listbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architectures/alert/" class="md-nav__link">
+        Alert
       </a>
     </li>
   
@@ -670,6 +684,10 @@
 </div>
 </div>
 <h2 id="hx_enable_inline_validation"><code>hx_enable_inline_validation()</code></h2>
+<div class="admonition warning">
+<p class="admonition-title">Requires htmx-compatible view</p>
+<p>Need to handle the request, checking if it is an htmx request (see <a href="../../utils/#is_htmx">is_htmx()</a>) and then render the template with the form.</p>
+</div>
 
 
 <div class="doc doc-object doc-function">

@@ -12,20 +12,20 @@
         <meta name="author" content="Marcelino Veloso III">
       
       
-        <link rel="canonical" href="https://mv3.dev/architectures/dropdown/">
+        <link rel="canonical" href="https://mv3.dev/architectures/menubar/">
       
       
         <link rel="prev" href="../rationale/">
       
       
-        <link rel="next" href="../msg/">
+        <link rel="next" href="../listbox/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.12">
     
     
       
-        <title>Dropdown - django-fragments Docs</title>
+        <title>Menubar - django-fragments Docs</title>
       
     
     
@@ -79,7 +79,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#single-dropdown" class="md-skip">
+        <a href="#menubar" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Dropdown
+              Menubar
             
           </span>
         </div>
@@ -438,12 +438,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Dropdown
+          Menubar
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Dropdown
+        Menubar
       </a>
       
         
@@ -462,70 +462,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#listbox" class="md-nav__link">
-    listbox
+  <a href="#required-blueprint" class="md-nav__link">
+    Required Blueprint
   </a>
-  
-    <nav class="md-nav" aria-label="listbox">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#listbox-components" class="md-nav__link">
-    listbox components
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#listbox-sample" class="md-nav__link">
-    listbox sample
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#listbox-focus" class="md-nav__link">
-    listbox focus
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#menubar" class="md-nav__link">
-    menubar
-  </a>
-  
-    <nav class="md-nav" aria-label="menubar">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#menubar-components" class="md-nav__link">
-    menubar components
+  <a href="#sample-implementation" class="md-nav__link">
+    Sample  +  Implementation
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#menubar-sample" class="md-nav__link">
-    menubar sample
+      
+        <li class="md-nav__item">
+  <a href="#selector-styling" class="md-nav__link">
+    Selector Styling
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#menubar-focus" class="md-nav__link">
-    menubar focus
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -544,8 +497,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../msg/" class="md-nav__link">
-        Messages
+      <a href="../listbox/" class="md-nav__link">
+        Listbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alert/" class="md-nav__link">
+        Alert
       </a>
     </li>
   
@@ -600,70 +567,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#listbox" class="md-nav__link">
-    listbox
+  <a href="#required-blueprint" class="md-nav__link">
+    Required Blueprint
   </a>
-  
-    <nav class="md-nav" aria-label="listbox">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#listbox-components" class="md-nav__link">
-    listbox components
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#listbox-sample" class="md-nav__link">
-    listbox sample
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#listbox-focus" class="md-nav__link">
-    listbox focus
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#menubar" class="md-nav__link">
-    menubar
-  </a>
-  
-    <nav class="md-nav" aria-label="menubar">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#menubar-components" class="md-nav__link">
-    menubar components
+  <a href="#sample-implementation" class="md-nav__link">
+    Sample  +  Implementation
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#menubar-sample" class="md-nav__link">
-    menubar sample
+      
+        <li class="md-nav__item">
+  <a href="#selector-styling" class="md-nav__link">
+    Selector Styling
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#menubar-focus" class="md-nav__link">
-    menubar focus
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -685,37 +605,25 @@
   
 
 
-<h1 id="single-dropdown">Single Dropdown</h1>
-<div class="admonition note">
-<p class="admonition-title">Reusable menu/list toggle that results in a toggle with aria-*</p>
-<p>A <a href="https://www.w3.org/WAI/ARIA/apg/patterns/menubar/">menu bar</a> typicaly appears in the <code>&lt;nav&gt;</code>.</p>
-<p>A <a href="https://www.w3.org/WAI/ARIA/apg/patterns/listbox/">listbox dropdown</a> typically appears in a <code>&lt;form&gt;</code>.</p>
-<p>Since both contain similar events, <em>e.g. keyboard navigation, touch events, mouse clicks/hover</em>, I've tried my hand at some vanilla js to implement the common events without css being applied.</p>
-</div>
-<h3 id="listbox">listbox</h3>
-<p>Faking a <code>&lt;select&gt;</code> with <code>&lt;ul hidden role='listbox'&gt;</code></p>
-<h4 id="listbox-components">listbox components</h4>
+<h1 id="menubar">Menubar</h1>
+<p>Initializing a <code>&lt;button&gt;</code> menubar with <code>&lt;ul hidden role='menu'&gt;</code></p>
+<h2 id="required-blueprint">Required Blueprint</h2>
 <div class="language-js highlight"><span class="filename">Javascript checks</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// Hidden field + label (2)</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> &gt; select[hidden]`</span><span class="p">)</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> label`</span><span class="p">)</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// Button with text (3)</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> button`</span><span class="p">)</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> button &gt; span`</span><span class="p">)</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">// Listbox options (4)</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> ul[hidden][role=listbox]`</span><span class="p">)</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> ul[hidden][role=listbox] &gt; li`</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// Button with text (2)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> button`</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1">// Clickable menu items (3)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> ul[hidden][role=menu]`</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> ul[hidden][role=menu] &gt; li`</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> ul[hidden][role=menu] &gt; li a`</span><span class="p">)</span>
 </span></code></pre></div>
 <ol>
 <li>The container will contain component DOM nodes</li>
-<li>Should contain direct child <code>&lt;select hidden&gt;</code> and associated <code>&lt;label&gt;</code> (need not be a direct child)</li>
-<li>Child <code>&lt;button&gt;</code> with a direct child <code>&lt;span&gt;</code></li>
-<li>Child <code>&lt;ul hidden role='listbox'&gt;</code> with direct children <code>&lt;li&gt;</code></li>
+<li>Child <code>&lt;button&gt;</code></li>
+<li>Child <code>&lt;ul hidden role='menu'&gt;</code> with direct children <code>&lt;li&gt;</code> containing an <code>&lt;a&gt;</code> element.</li>
 </ol>
-<h4 id="listbox-sample">listbox sample</h4>
+<h2 id="sample-implementation">Sample <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3m4.73 15.04c.4.85 1.19 1.55 2.54 1.55 1.5 0 2.53-.8 2.53-2.55v-5.78h-1.7V17c0 .86-.35 1.08-.9 1.08-.58 0-.82-.4-1.09-.87l-1.38.83m5.98-.18c.5.98 1.51 1.73 3.09 1.73 1.6 0 2.8-.83 2.8-2.36 0-1.41-.81-2.04-2.25-2.66l-.42-.18c-.73-.31-1.04-.52-1.04-1.02 0-.41.31-.73.81-.73.48 0 .8.21 1.09.73l1.31-.87c-.55-.96-1.33-1.33-2.4-1.33-1.51 0-2.48.96-2.48 2.23 0 1.38.81 2.03 2.03 2.55l.42.18c.78.34 1.24.55 1.24 1.13 0 .48-.45.83-1.15.83-.83 0-1.31-.43-1.67-1.03l-1.38.8Z"/></svg></span> + <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.146 0h3.924v18.166c-2.013.382-3.491.535-5.096.535-4.791 0-7.288-2.166-7.288-6.32 0-4.002 2.65-6.6 6.753-6.6.637 0 1.121.05 1.707.203zm0 9.143a3.894 3.894 0 0 0-1.325-.204c-1.988 0-3.134 1.223-3.134 3.365 0 2.09 1.096 3.236 3.109 3.236.433 0 .79-.025 1.35-.102V9.142zM21.314 6.06v9.098c0 3.134-.229 4.638-.917 5.937-.637 1.249-1.478 2.039-3.211 2.905l-3.644-1.733c1.733-.815 2.574-1.53 3.109-2.625.561-1.121.739-2.421.739-5.835V6.059h3.924zM17.39.021h3.924v4.026H17.39z"/></svg></span> Implementation</h2>
 <div class="language-jinja highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">doSelect(id-of-container-node)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
@@ -730,84 +638,27 @@
 <span class="normal"><a href="#__codelineno-1-12">12</a></span>
 <span class="normal"><a href="#__codelineno-1-13">13</a></span>
 <span class="normal"><a href="#__codelineno-1-14">14</a></span>
-<span class="normal"><a href="#__codelineno-1-15">15</a></span>
-<span class="normal"><a href="#__codelineno-1-16">16</a></span>
-<span class="normal"><a href="#__codelineno-1-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="x">&lt;script src=&quot;</span><span class="cp">{%</span> <span class="k">static</span> <span class="s1">&#39;doDropCommon.js&#39;</span> <span class="cp">%}</span><span class="x">&quot;&gt;&lt;/script&gt;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="x">&lt;script src=&quot;</span><span class="cp">{%</span> <span class="k">static</span> <span class="s1">&#39;doDropSelect.js&#39;</span> <span class="cp">%}</span><span class="x">&quot;&gt;&lt;/script&gt;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="x">&lt;div id=&quot;</span><span class="cp">{{</span><span class="nv">idx</span><span class="cp">}}</span><span class="x">&quot; _=&quot;on load js doSelect(&#39;</span><span class="cp">{{</span><span class="nv">idx</span><span class="cp">}}</span><span class="x">&#39;) end end&quot;&gt; </span><span class="c">{# required container id with components #}</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="hll"><span class="x">  </span><span class="cp">{{</span> <span class="nv">field</span> <span class="cp">}}</span><span class="x"> </span><span class="c">{# can add django_widget_tweaks to supply &#39;hidden&#39; or modify from Form widget attrs #}</span>
-</span></span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="x">  </span><span class="cp">{{</span> <span class="nv">field.label_tag</span> <span class="cp">}}</span><span class="x"> </span><span class="c">{# label #}</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="x">  &lt;button&gt;</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="x">    &lt;span&gt;</span><span class="cp">{{</span><span class="nv">field.value.label</span><span class="o">|</span><span class="nf">default</span><span class="s1">:&#39;None&#39;</span><span class="cp">}}</span><span class="x">&lt;/span&gt;</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="x">  &lt;/button&gt;</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="x">  &lt;ul hidden role=&quot;listbox&quot;&gt;</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="x">    </span><span class="c">{# required data-* attributes in each option #}</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="x">    </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">choice</span> <span class="k">in</span> <span class="nv">field.field.choices</span> <span class="cp">%}</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="x">      &lt;li data-key=&quot;</span><span class="cp">{{</span><span class="nv">choice.0</span><span class="o">|</span><span class="nf">default</span><span class="s1">:&#39;None&#39;</span><span class="cp">}}</span><span class="x">&quot; data-value=&quot;</span><span class="cp">{{</span><span class="nv">choice.1</span><span class="cp">}}</span><span class="x">&quot;&gt;</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="x">        &lt;span&gt;</span><span class="cp">{{</span><span class="nv">choice.1</span><span class="cp">}}</span><span class="x">&lt;/span&gt;</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="x">      &lt;/li&gt;</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="x">  &lt;/ul&gt;</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="x">&lt;/div&gt;</span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="x">&lt;script src=&quot;</span><span class="cp">{%</span> <span class="k">static</span> <span class="s1">&#39;doDropCommon.js&#39;</span> <span class="cp">%}</span><span class="x">&quot;&gt;&lt;/script&gt; </span><span class="c">{# (1) #}</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="x">&lt;script src=&quot;</span><span class="cp">{%</span> <span class="k">static</span> <span class="s1">&#39;doDropMenu.js&#39;</span> <span class="cp">%}</span><span class="x">&quot;&gt;&lt;/script&gt; </span><span class="c">{# (2) #}</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="x">&lt;html&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="x">  &lt;head&gt;...&lt;/head&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="hll"><span class="x">  &lt;nav id=&quot;nav-menu-id&quot; _=&quot;on load js doMenu(&#39;nav-menu-id&#39;) end end&quot;&gt; </span><span class="c">{# required container id with components #}</span>
+</span></span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="x">    &lt;button&gt;Menu&lt;/button&gt;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="x">    &lt;ul hidden role=&quot;menu&quot;&gt;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="x">      &lt;li&gt;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="x">        &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt; </span><span class="c">{# required a clickable #}</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="x">      &lt;/li&gt;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="x">      ...</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="x">    &lt;/ul&gt;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="x">  &lt;/nav&gt;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="x">  ...</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="x">&lt;/html&gt;</span>
 </span></code></pre></div></td></tr></table></div>
-<h4 id="listbox-focus">listbox focus</h4>
-<p>When an <code>&lt;li&gt;</code> on the listbox receives <code>:focus</code>:</p>
 <ol>
-<li><code>aria-selected='true'</code> appears on <code>&lt;li&gt;</code>.</li>
-<li><code>aria-selected='false'</code> is set on the other <code>&lt;li&gt;</code></li>
-<li><code>aria-activedescendant</code> appears on <code>&lt;ul&gt;</code> pointing to the auto-generated id of <code>&lt;li&gt;</code>.</li>
+<li>Common script to both menubar and listbox</li>
+<li>Specific script enabling <code>doMenu()</code></li>
 </ol>
-<p>These can then be used as a selector to style the focused element.</p>
-<h3 id="menubar">menubar</h3>
-<p>Initializing a <code>&lt;button&gt;</code> menubar with <code>&lt;ul hidden role='menu'&gt;</code></p>
-<h4 id="menubar-components">menubar components</h4>
-<div class="language-js highlight"><span class="filename">Javascript checks</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1">// Button with text (2)</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> button`</span><span class="p">)</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">// Clickable menu items (3)</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> ul[hidden][role=menu]`</span><span class="p">)</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> ul[hidden][role=menu] &gt; li`</span><span class="p">)</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="sb">`#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb"> ul[hidden][role=menu] &gt; li a`</span><span class="p">)</span>
-</span></code></pre></div>
-<ol>
-<li>The container will contain component DOM nodes</li>
-<li>Child <code>&lt;button&gt;</code></li>
-<li>Child <code>&lt;ul hidden role='menu'&gt;</code> with direct children <code>&lt;li&gt;</code> containing an <code>&lt;a&gt;</code> element.</li>
-</ol>
-<h4 id="menubar-sample">menubar sample</h4>
-<div class="language-jinja highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">doSelect(id-of-container-node)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-3-10">10</a></span>
-<span class="normal"><a href="#__codelineno-3-11">11</a></span>
-<span class="normal"><a href="#__codelineno-3-12">12</a></span>
-<span class="normal"><a href="#__codelineno-3-13">13</a></span>
-<span class="normal"><a href="#__codelineno-3-14">14</a></span>
-<span class="normal"><a href="#__codelineno-3-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="x">&lt;script src=&quot;</span><span class="cp">{%</span> <span class="k">static</span> <span class="s1">&#39;doDropCommon.js&#39;</span> <span class="cp">%}</span><span class="x">&quot;&gt;&lt;/script&gt;</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="x">&lt;script src=&quot;</span><span class="cp">{%</span> <span class="k">static</span> <span class="s1">&#39;doDropMenu.js&#39;</span> <span class="cp">%}</span><span class="x">&quot;&gt;&lt;/script&gt;</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="x">&lt;html&gt;</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="x">  &lt;head&gt;...&lt;/head&gt;</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="hll"><span class="x">  &lt;nav id=&quot;nav-menu-id&quot; _=&quot;on load js doMenu(&#39;nav-menu-id&#39;) end end&quot;&gt; </span><span class="c">{# required container id with components #}</span>
-</span></span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="x">    &lt;button&gt;Menu&lt;/button&gt;</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="x">    &lt;ul hidden role=&quot;menu&quot;&gt;</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="x">      &lt;li&gt;</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="x">        &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt; </span><span class="c">{# required a clickable #}</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="x">      &lt;/li&gt;</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="x">      ...</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="x">    &lt;/ul&gt;</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="x">  &lt;/nav&gt;</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="x">  ...</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="x">&lt;/html&gt;</span>
-</span></code></pre></div></td></tr></table></div>
-<h4 id="menubar-focus">menubar focus</h4>
+<h2 id="selector-styling">Selector Styling</h2>
 <p>When an <code>&lt;li&gt;</code> on the menubar receives <code>:focus</code>:</p>
 <ol>
 <li><code>data-ok='true'</code> appears on <code>&lt;li&gt;</code>.</li>

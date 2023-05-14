@@ -12,27 +12,23 @@
         <meta name="author" content="Marcelino Veloso III">
       
       
-        <link rel="canonical" href="https://mv3.dev/architectures/msg/">
+        <link rel="canonical" href="https://mv3.dev/notes/">
       
       
-        <link rel="prev" href="../dropdown/">
       
-      
-        <link rel="next" href="../../utils/">
-      
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.12">
     
     
       
-        <title>Messages - django-fragments Docs</title>
+        <title>Notes - django-fragments Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a6bdf11c.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -48,9 +44,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -79,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#msghtml" class="md-skip">
+        <a href="#notes" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Messages
+              Notes
             
           </span>
         </div>
@@ -250,7 +246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         Overview
       </a>
     </li>
@@ -265,7 +261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/" class="md-nav__link">
+      <a href="../install/" class="md-nav__link">
         Install
       </a>
     </li>
@@ -307,7 +303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fragments/icon/" class="md-nav__link">
+      <a href="../fragments/icon/" class="md-nav__link">
         icon
       </a>
     </li>
@@ -321,7 +317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fragments/themer/" class="md-nav__link">
+      <a href="../fragments/themer/" class="md-nav__link">
         themer
       </a>
     </li>
@@ -335,7 +331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fragments/hput/" class="md-nav__link">
+      <a href="../fragments/hput/" class="md-nav__link">
         hput
       </a>
     </li>
@@ -349,7 +345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fragments/nava/" class="md-nav__link">
+      <a href="../fragments/nava/" class="md-nav__link">
         nava
       </a>
     </li>
@@ -363,7 +359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fragments/og/" class="md-nav__link">
+      <a href="../fragments/og/" class="md-nav__link">
         og
       </a>
     </li>
@@ -383,16 +379,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
       
       
       
@@ -401,7 +395,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Architectures
@@ -414,7 +408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rationale/" class="md-nav__link">
+      <a href="../architectures/rationale/" class="md-nav__link">
         Rationale
       </a>
     </li>
@@ -428,8 +422,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../dropdown/" class="md-nav__link">
-        Dropdown
+      <a href="../architectures/menubar/" class="md-nav__link">
+        Menubar
       </a>
     </li>
   
@@ -440,59 +434,25 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Messages
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Messages
+    <li class="md-nav__item">
+      <a href="../architectures/listbox/" class="md-nav__link">
+        Listbox
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+            
+          
+            
+              
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#generic-usage" class="md-nav__link">
-    Generic Usage
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#partial-template-usage" class="md-nav__link">
-    Partial Template Usage
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
+    <li class="md-nav__item">
+      <a href="../architectures/alert/" class="md-nav__link">
+        Alert
+      </a>
     </li>
   
 
@@ -512,7 +472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/" class="md-nav__link">
+      <a href="../utils/" class="md-nav__link">
         utils
       </a>
     </li>
@@ -546,15 +506,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#generic-usage" class="md-nav__link">
-    Generic Usage
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#partial-template-usage" class="md-nav__link">
-    Partial Template Usage
+  <a href="#choices" class="md-nav__link">
+    Choices
   </a>
   
 </li>
@@ -577,52 +530,17 @@
   
 
 
-<h1 id="msghtml"><code>msg.html</code></h1>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.146 0h3.924v18.166c-2.013.382-3.491.535-5.096.535-4.791 0-7.288-2.166-7.288-6.32 0-4.002 2.65-6.6 6.753-6.6.637 0 1.121.05 1.707.203zm0 9.143a3.894 3.894 0 0 0-1.325-.204c-1.988 0-3.134 1.223-3.134 3.365 0 2.09 1.096 3.236 3.109 3.236.433 0 .79-.025 1.35-.102V9.142zM21.314 6.06v9.098c0 3.134-.229 4.638-.917 5.937-.637 1.249-1.478 2.039-3.211 2.905l-3.644-1.733c1.733-.815 2.574-1.53 3.109-2.625.561-1.121.739-2.421.739-5.835V6.059h3.924zM17.39.021h3.924v4.026H17.39z"/></svg></span> <code>messages</code> framework can be included in a base template:</p>
-<div class="language-jinja highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">hq = DOM element id in base.html</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-0-10">10</a></span>
-<span class="normal"><a href="#__codelineno-0-11">11</a></span>
-<span class="normal"><a href="#__codelineno-0-12">12</a></span>
-<span class="normal"><a href="#__codelineno-0-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="x">...</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="cp">{%</span> <span class="k">load</span> <span class="nv">fragments</span> <span class="cp">%}</span><span class="c">{# for the icon #}</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="x">&lt;section id=&quot;hq&quot; </span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">messages</span> <span class="cp">%}</span><span class="x">hx-swap-oob=&quot;true&quot;</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"> aria-live=&quot;assertive&quot;&gt;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="hll"><span class="x">  </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">message</span> <span class="k">in</span> <span class="nv">messages</span> <span class="cp">%}</span>
-</span></span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="x">    &lt;div id=&quot;msg-</span><span class="cp">{{</span><span class="nb">forloop</span><span class="nv">.counter</span><span class="cp">}}</span><span class="x">&quot; data-level=&quot;</span><span class="cp">{{</span><span class="nv">message.level_tag</span><span class="o">|</span><span class="nf">lower</span><span class="cp">}}</span><span class="x">&quot;</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="x">          _=&quot;on load show me then wait 3s then hide me then remove me&quot;&gt;</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="x">      </span><span class="cp">{{</span><span class="nv">message</span><span class="cp">}}</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="x">      &lt;button id=&quot;msg-close-</span><span class="cp">{{</span><span class="nb">forloop</span><span class="nv">.counter</span><span class="cp">}}</span><span class="x">&quot; type=&quot;button&quot; _=&quot;on click remove #msg-</span><span class="cp">{{</span><span class="nb">forloop</span><span class="nv">.counter</span><span class="cp">}}</span><span class="x"> end&quot;&gt;</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="x">        </span><span class="cp">{%</span> <span class="k">icon</span> <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;x_mark_mini&#39;</span> <span class="nv">css</span><span class="o">=</span><span class="s2">&quot;h-5 w-5 &quot;</span> <span class="nv">pre_text</span><span class="o">=</span><span class="s2">&quot;Close&quot;</span> <span class="nv">pre_class</span><span class="o">=</span><span class="s2">&quot;sr-only&quot;</span> <span class="nv">aria_hidden</span><span class="o">=</span><span class="s2">&quot;true&quot;</span> <span class="cp">%}</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="x">      &lt;/button&gt;</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="x">    &lt;/div&gt;</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="x">  </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="x">&lt;/section&gt;</span>
-</span></code></pre></div></td></tr></table></div>
-<h2 id="generic-usage">Generic Usage</h2>
-<p>Because of a global alerts center in base template described above, a message can alert the user whenever <code>messages</code> are included in the context of a <em>traditional</em> request-response cycle, e.g. <code>messages.add(request, messages.INFO, 'This is important!')</code></p>
-<h2 id="partial-template-usage">Partial Template Usage</h2>
-<p>Outside the <em>traditional</em> request-response cyclee, the template will likely not include the alerts center considering that only parts of the DOM are modified via an htmx swapping event.</p>
-<p>In such cases, one can employ <a href="https://htmx.org/attributes/hx-swap-oob/"><code>hx-swap-oob</code></a>. Here, a swap of the targeted area (as its usual behavior) occurs but the <code>out-of-band</code> (oob) command will enable the reuse of the identified <code>hq</code> DOM elemen... as if to tell it:</p>
-<blockquote>
-<p><em>"new messages have arrived, show them".</em></p>
-</blockquote>
-<p>This is the import of:</p>
-<div class="language-jinja highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Add this to the swapping template</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
-<span class="normal"><a href="#__codelineno-1-2">2</a></span>
-<span class="normal"><a href="#__codelineno-1-3">3</a></span>
-<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="x">...</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="hll"><span class="x">&lt;section id=&quot;hq&quot; </span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">messages</span> <span class="cp">%}</span><span class="x">hx-swap-oob=&quot;true&quot;</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"> aria-live=&quot;assertive&quot;&gt;</span>
-</span></span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="x">  ...</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="x">&lt;/section&gt;</span>
-</span></code></pre></div></td></tr></table></div>
-<p>In order to employ this strategy, this partial fragment needs to be included in the swap fragment.</p>
+<h1 id="notes">Notes</h1>
+<h2 id="choices">Choices</h2>
+<p>Inconsistent choices</p>
+<ol>
+<li>IntegerChoices:</li>
+<li><code>field.value</code> is an integer</li>
+<li><code>field.value.label</code> is the human-readable text</li>
+<li>TextChoices:</li>
+<li><code>field.value.label</code> will result in None</li>
+<li><code>field.value</code> is the human-readable text</li>
+</ol>
 
 
 
@@ -688,10 +606,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tabs.link", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link", "content.code.annotate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c2be25ad.min.js"></script>
+      <script src="../assets/javascripts/bundle.c2be25ad.min.js"></script>
       
     
   </body>

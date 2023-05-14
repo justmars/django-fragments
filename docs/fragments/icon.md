@@ -33,58 +33,62 @@
 
 ## Setup
 
-Declare folder and prefix as part of settings:
+In order to work, must configure `settings.py` (or its equivalent) to define a path and then add properly named `.html` files containing copy/pasted raw `<svg>` from sources.
 
-```py
+```py title="src/config/_settings.py"
 FRAGMENTS = {
-    "icons_prefix": "heroicons", # must be string type
-    "icons_path": BASE_DIR / # must be Path type
+  "icons_prefix": "heroicons", # prefix
+  "icons_path": BASE_DIR / "templates" / "svg" # folder must exist, must use Path
 }
 ```
 
 ## SVG Placement
 
 1. Copy `<svg>` markup from a _source_ such as [heroicons](https://heroicons.com/), [bootstrap](https://icons.getbootstrap.com/), etc.;
-2. The name of the file to be created is relevant. Note _source_, we'll call this the `prefix`;
-3. Create `.html` file found in a template `folder` (default: `/src/templates/component/svg`);
-4. File follows convention `prefix` + `_` + `name` (of the `<svg>` from the _source_)`.html`.
-5. `name` must replace dashes `-` with underscores `_`
 
-See sample structure:
+    The svg markup in the file will look like:
 
-```yaml title="Prefix of source, name of svg" linenums="1" hl_lines="7"
-...
-<root>
-├── config/
-├── static/
-├── templates/
-      ├── svg/
-          ├── bootstrap_github.html # (1)
-          ├── heroicons_x_mark_mini.html # insert svg markup here (2)
-          ...
-```
-
-1. Dissected (prefix used) `bootstrap`; (icon name) `github`
-
-      Use as: `{% icon name='github' prefix="bootstrap" %}`
-
-2. Dissected:
-
-      1. prefix used: `heroicons`
-      2. icon name: `x_mark_mini`
-
-      Use as:
-
-      1. `{% icon name='x_mark_mini' prefix="heroicons" %}`; or
-      2. `{% icon name='x_mark_mini' %}` (since heroicons is the default).
-
-      The svg markup in the file will look like:
-
-      ```html title="x_mark_mini from heroicons copy/pasted"
+      ```html title="x_mark_mini"
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
         <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
       </svg>
       ```
+
+2. The name of the file to be created is relevant. Note _source_, we'll call this the `prefix` (see `FRAGMENTS['icons_prefix']`);
+3. Create `.html` file found in `FRAGMENTS['icons_path']` in the proper folder and paste the `<svg>` markup to that file. See placement:
+
+      ```yaml title="Prefix of source, name of svg" linenums="1" hl_lines="7"
+      ...
+      ├── config/
+      ├── static/
+      ├── templates/
+          ├── svg/
+              ├── bootstrap_github.html # (1)
+              ├── heroicons_x_mark_mini.html # insert svg markup here (2)
+              ...
+      ```
+
+      1. Dissected (prefix used) `bootstrap`; (icon name) `github`. Use as: `{% icon name='github' prefix="bootstrap" %}`
+
+      1. Dissected:
+
+         1. prefix used: `heroicons`
+         2. icon name: `x_mark_mini`
+
+         Use as:
+
+         1. `{% icon name='x_mark_mini' prefix="heroicons" %}`; or
+         2. `{% icon name='x_mark_mini' %}` (since heroicons is the default).
+
+      ```html title="/src/templates/svg/heroicons_x_mark_mini.html"
+      <!-- note the created file's name -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+        <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+      </svg>
+      ```
+
+4. Filename follows convention `prefix` + `_` + `name` (of the `<svg>` from the _source_)`.html`.
+5. The user is responsible for renaming the file properly to match the `prefix` and `name`. Note the `name` must replace dashes `-` with underscores `_`.
 
 ## Basis
 

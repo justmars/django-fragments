@@ -32,11 +32,23 @@ class AboutPage(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        messages.add_message(self.request, messages.DEBUG, "Test")
-        messages.add_message(self.request, messages.INFO, "You are now informed")
-        messages.add_message(self.request, messages.WARNING, "You warned")
-        messages.add_message(self.request, messages.ERROR, "I'm an error!")
-        messages.add_message(self.request, messages.SUCCESS, "I worked.")
+        # uses missing.css extra tags, see https://missing.style/docs/colorways/
+        messages.add_message(
+            self.request, messages.DEBUG, "Test", extra_tags="color plain"
+        )  # won't be displayed since DEBUG is not record as default, can change via
+        # https://docs.djangoproject.com/en/dev/ref/contrib/messages/#changing-the-minimum-recorded-level-per-request
+        messages.add_message(
+            self.request, messages.INFO, "You are now informed", extra_tags="color info"
+        )
+        messages.add_message(
+            self.request, messages.WARNING, "You warned", extra_tags="color warn"
+        )
+        messages.add_message(
+            self.request, messages.ERROR, "I'm an error!", extra_tags="color bad"
+        )
+        messages.add_message(
+            self.request, messages.SUCCESS, "I worked.", extra_tags="color ok"
+        )
         return context
 
 

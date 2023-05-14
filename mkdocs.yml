@@ -33,8 +33,9 @@ nav:
     - og: fragments/og.md
   - Architectures:
     - Rationale: architectures/rationale.md
-    - Dropdown: architectures/dropdown.md
-    - Messages: architectures/msg.md
+    - Menubar: architectures/menubar.md
+    - Listbox: architectures/listbox.md
+    - Alert: architectures/alert.md
   - utils: utils.md
 extra:
   homepage: https://mv3.dev

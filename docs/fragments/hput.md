@@ -63,4 +63,8 @@ Use of [django_widget_tweaks](https://github.com/jazzband/django-widget-tweaks) 
 
 ## `hx_enable_inline_validation()`
 
+!!! warning "Requires htmx-compatible view"
+
+    Need to handle the request, checking if it is an htmx request (see [is_htmx()](../utils.md#is_htmx)) and then render the template with the form.
+
 ::: django_fragments.templatetags.helpers.hx_enable_inline_validation

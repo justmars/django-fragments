@@ -2,7 +2,7 @@
   {{ field }}
   {{ field.label_tag }}
   <button>
-    <span>{{field.value.label|default:'None'}}</span>
+    <span>{{field.value.label|default:'None'}}</span>{# field.value #}
   </button>
   <ul hidden role="listbox">
     {% for choice in field.field.choices %}

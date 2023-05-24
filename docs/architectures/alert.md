@@ -29,6 +29,8 @@ Because of a global alerts center in base template described above, a message ca
 
 ### Partial Swapping Template
 
+![Excalidraw snapshot of general flow](./img/hx_oob.png)
+
 Outside the _traditional_ request-response cyclee, the template will likely not include the alerts center considering that only parts of the DOM are modified via an htmx swapping event.
 
 In such cases, one can employ [`hx-swap-oob`](https://htmx.org/attributes/hx-swap-oob/). Here, a swap of the targeted area (as its usual behavior) occurs but the `out-of-band` (oob) command will enable the reuse of the identified `hq` DOM elemen... as if to tell it:

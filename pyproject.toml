@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "django-fragments"
 description = "Custom template tags for common html idioms in Django."
-version = "0.1.8"
+version = "0.1.9"
 authors = ["Marcelino G. Veloso III <mars@veloso.one>"]
 readme = "README.md"
 homepage = "https://mv3.dev"
 repository = "https://github.com/justmars/django-fragments"
-documentation = "https://mv3.dev/django-fragments"
+documentation = "https://justmars.github.io/django-fragments"
 classifiers = [
   "Programming Language :: Python :: 3.11",
   "Typing :: Typed",
